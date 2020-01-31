@@ -48,7 +48,9 @@ public class TeleopDrive extends Command {
         double throt = (OI.joystick.getRawAxis(3) / 2) + 1;
         double fwd = (throt * OI.joystick.getRawAxis(1) * -1);
 
-        Drivetrain.drive.arcadeDrive(OI.joystick.getRawAxis(2) * (throt / 2), fwd);
+        Robot.drivetrain.getDifferentialDrive().arcadeDrive(OI.joystick.getRawAxis(2) * (throt / 2), fwd);
+
+        // Drivetrain.drive.arcadeDrive(OI.joystick.getRawAxis(2) * (throt / 2), fwd);
     }
 
     // Make this return true when this Command no longer needs to run execute()
