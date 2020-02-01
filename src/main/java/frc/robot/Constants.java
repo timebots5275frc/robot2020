@@ -33,4 +33,8 @@ public final class Constants {
                 // Assumes the encoders are directly mounted on the wheel shafts
                 (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
     }
+
+    public static final class OIConstants {
+        public static final int kDriverControllerPort = 1;
+    }
 }
