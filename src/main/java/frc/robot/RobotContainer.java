@@ -7,11 +7,13 @@
 
 package frc.robot;
 
-
-
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.HopperAdvance;
+import frc.robot.commands.HopperReverse;
 import frc.robot.subsystems.*;
 
 /**
@@ -34,7 +36,6 @@ public class RobotContainer {
   public static Telescope telescope;
   public static Winch winch;
 
-
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
@@ -47,9 +48,13 @@ public class RobotContainer {
 
   }
 
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    new JoystickButton(driveStick, 1).whenPressed(new HopperAdvance());
+    new JoystickButton(driveStick, 2).whenPressed(new HopperReverse());
+  }
 
-  private void configureSubsystemCommands() {}
+  private void configureSubsystemCommands() {
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -59,7 +64,8 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
   }
-  public static Joystick getDriveStick(){
-      return driveStick;
+
+  public static Joystick getDriveStick() {
+    return driveStick;
   }
 }
