@@ -30,6 +30,14 @@ public class Hopper extends Subsystem {
         hopperVictorTop = new WPI_VictorSPX(Constants.HopperConstants.VICTOR_CAN_TOP);
         hopperVictorBottom = new WPI_VictorSPX(Constants.HopperConstants.VICTOR_CAN_BOTTOM);
         // hopperVictorFollower.follow(hopperVictor);
+
+        // 0.5 seconds from neutral to full output (during open-loop control)
+        hopperVictorTop.configOpenloopRamp(Constants.HopperConstants.VICTOR_RAMPING);
+        hopperVictorBottom.configOpenloopRamp(Constants.HopperConstants.VICTOR_RAMPING);
+
+        // ramping during closed-loop control
+        hopperVictorTop.configClosedloopRamp(Constants.HopperConstants.VICTOR_RAMPING);
+        hopperVictorBottom.configClosedloopRamp(Constants.HopperConstants.VICTOR_RAMPING);
     }
 
     /**
