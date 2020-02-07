@@ -11,6 +11,7 @@ package frc.robot;
  * Add your docs here.
  */
 public final class Constants {
+
     public static final class TelescopeConstants {
         // TODO set these correct
         public static final int UP_SWITCH_CHANNEL = 0;
@@ -25,6 +26,10 @@ public final class Constants {
     }
 
     public static final class HopperConstants {
+
+        public static final int HOPPER_ADVANCE_BUTTON = 6; // Temp button
+        public static final int HOPPER_REVERSE_BUTTON = 4; // Temp button
+
         public static final int VICTOR_CAN_TOP = 6;
         public static final int VICTOR_CAN_BOTTOM = 7;
 
