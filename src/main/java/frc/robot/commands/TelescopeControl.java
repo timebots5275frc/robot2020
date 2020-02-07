@@ -10,34 +10,28 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class TelescopeSeek extends CommandBase {
-
-  final int _pos;
+public class TelescopeControl extends CommandBase {
   /**
-   * Creates a new TelescopeSeek.
-   * @param pos the encoder position the command will seek to
+   * Creates a new TelescopeControl.
    */
-  public TelescopeSeek(int pos) {
-    addRequirements(RobotContainer.telescope);
-    _pos = pos;
+  public TelescopeControl() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // maybe implement a cancel of other TelescopeSeek objects here?
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!(RobotContainer.telescope.getUpSwitch()) && !(RobotContainer.telescope.getUpSwitch())){
-      RobotContainer.telescope.getMotor().set(ControlMode.Position, _pos);
-    }
-    else RobotContainer.telescope.getMotor().set(ControlMode.PercentOutput, 0.0); // TODO implement further
-    
+    // TODO verify this axis
+    RobotContainer.telescope.getMotor().set(ControlMode.PercentOutput, RobotContainer.getDriveStick().getRawAxis(3));
   }
 
   // Called once the command ends or is interrupted.
