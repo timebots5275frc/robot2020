@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.TelescopeConstants;
 
 public class TelescopeSeek extends CommandBase {
 
@@ -24,6 +25,20 @@ public class TelescopeSeek extends CommandBase {
     _pos = pos;
   }
 
+  /**
+   * Creates a new TelescopeSeek.
+   * @param height the height the command will seek to
+   */
+  public TelescopeSeek(double height) {
+    addRequirements(RobotContainer.telescope);
+    height = height / 2; // convert from height to pull (2:1 ratio of height:pull)
+    height = height / TelescopeConstants.TELE_DRUM_CIRCUMFERENCE; // pull / circumference to yield rotations
+    height = height * 4096; // rotations to encoder counts
+    _pos = (int) height;
+  }
+
+  
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -36,7 +51,7 @@ public class TelescopeSeek extends CommandBase {
     if (!(RobotContainer.telescope.getUpSwitch()) && !(RobotContainer.telescope.getUpSwitch())){
       RobotContainer.telescope.getMotor().set(ControlMode.Position, _pos);
     }
-    else RobotContainer.telescope.getMotor().set(ControlMode.PercentOutput, 0.0); // TODO implement further
+    else RobotContainer.telescope.getMotor().set(ControlMode.PercentOutput, 0.0); 
     
   }
 

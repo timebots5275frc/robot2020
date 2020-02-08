@@ -42,12 +42,7 @@ private DigitalInput upSwitch;
         _talon.configAllSettings(TelescopeConstants.getConfig());
         _talon.setSelectedSensorPosition(0);
     }
-
-    // @Override
-    // public void initDefaultCommand() {
-        
-    // }
-
+    
     @Override
     public void periodic() {
         // Put code here to be run every loop
