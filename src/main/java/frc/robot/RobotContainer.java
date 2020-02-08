@@ -12,6 +12,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.WinchSet;
 import frc.robot.subsystems.*;
 
 /**
@@ -33,7 +34,6 @@ public class RobotContainer {
   public static Spitter spitter;
   public static Telescope telescope;
   public static Winch winch;
-
 
   public RobotContainer() {
     // Configure the button bindings
