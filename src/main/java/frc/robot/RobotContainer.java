@@ -30,6 +30,7 @@ public class RobotContainer {
   private static final Joystick driveStick = new Joystick(Constants.ControllerConstants.DRIVER_STICK_CHANNEL);
 
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
+
   public static Intake intake;
   public static Hopper hopper;
   public static Spitter spitter;
@@ -45,7 +46,11 @@ public class RobotContainer {
     spitter = new Spitter();
     telescope = new Telescope();
     winch = new Winch();
+  }
 
+  private void configureButtonBindings() {
+    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_ADVANCE_BUTTON).whenPressed(new HopperAdvance());
+    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_REVERSE_BUTTON).whenPressed(new HopperReverse());
   }
 
   private void configureButtonBindings() {

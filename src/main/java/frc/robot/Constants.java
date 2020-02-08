@@ -40,15 +40,16 @@ public final class Constants {
     public static final class ControllerConstants {
         public static final int DRIVER_STICK_CHANNEL = 0;
     }
-
-    public static final class HopperConstants {
+        public static final int HOPPER_ADVANCE_BUTTON = 6; // Temp button
+        public static final int HOPPER_REVERSE_BUTTON = 4; // Temp button
         public static final int VICTOR_CAN_TOP = 6;
         public static final int VICTOR_CAN_BOTTOM = 7;
-        /**
-         * ControlMode.PercentOutput Value should range from 0 to 1; Ex 0.5 = 50%;
+        // ControlMode.PercentOutput Value should range from 0 to 1; Ex 0.5 = 50%;
+        public static final double HOPPER_ADVANCE_SPEED = 0.3;
+        public static final double HOPPER_HOLD_SPEED = 0;
+        public static final double HOPPER_REVERSE_SPEED = -0.3;
+        public static final double VICTOR_RAMPING = 0.1;
+         * Minimum desired time to go from neutral to full throttle. A value of '0' will
+         * disable the ramp.
          */
-        public static final double HOPPER_ADVANCE_SPEED = 0.1;
-        public static final double HOPPER_HOLD_SPEED = 0.1;
-        public static final double HOPPER_REVERSE_SPEED = 0.1;
-    }
 }

@@ -14,10 +14,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import frc.robot.Constants;
 
 /**
  *
