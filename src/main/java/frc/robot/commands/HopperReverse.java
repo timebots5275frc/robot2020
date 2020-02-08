@@ -30,7 +30,6 @@ public class HopperReverse extends Command {
         requires(RobotContainer.hopper);
         hopperVictorTop = RobotContainer.hopper.getHopperVictorBottom();
         hopperVictorBottom = RobotContainer.hopper.getHopperVictorTop();
-
     }
 
     // Called just before this Command runs the first time

@@ -53,11 +53,6 @@ public class RobotContainer {
     new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_REVERSE_BUTTON).whenPressed(new HopperReverse());
   }
 
-  private void configureButtonBindings() {
-    new JoystickButton(driveStick, 1).whenPressed(new HopperAdvance());
-    new JoystickButton(driveStick, 2).whenPressed(new HopperReverse());
-  }
-
   private void configureSubsystemCommands() {
   }
 
