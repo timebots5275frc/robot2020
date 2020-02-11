@@ -22,7 +22,8 @@ public final class Constants {
         public static final boolean UP_SWITCH_INVERTED = false;
         public static final boolean DOWN_SWITCH_INVERTED = false;
         private static final TalonSRXConfiguration TELE_SRX_CONFIG = new TalonSRXConfiguration();
-        public static TalonSRXConfiguration getConfig(){
+
+        public static TalonSRXConfiguration getConfig() {
             // TODO tune these values
             TELE_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
             TELE_SRX_CONFIG.neutralDeadband = 0.0;
@@ -59,6 +60,11 @@ public final class Constants {
          * disable the ramp.
          */
         public static final double VICTOR_RAMPING = 0.1;
+    }
+
+    public static final class SpitterConstants {
+        public static final int SPITTER_TRAPDOOR_TOGGLE_BUTTON = 7; // Temp button
+
     }
 
 }

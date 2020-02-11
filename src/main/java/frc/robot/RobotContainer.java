@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.HopperAdvance;
 import frc.robot.commands.HopperReverse;
+import frc.robot.commands.SpitterSet;
 import frc.robot.subsystems.*;
 
 /**
@@ -34,6 +35,10 @@ public class RobotContainer {
   public static Intake intake;
   public static Hopper hopper;
   public static Spitter spitter;
+  // public static SpitterSet spitterSetCommand;
+  public static SpitterSet spitterOff = new SpitterSet(0);
+  public static SpitterSet spitterOn = new SpitterSet(1);
+
   public static Telescope telescope;
   public static Winch winch;
 
@@ -51,6 +56,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_ADVANCE_BUTTON).whenPressed(new HopperAdvance());
     new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_REVERSE_BUTTON).whenPressed(new HopperReverse());
+
+    // new JoystickButton(driveStick,
+    // Constants.SpitterConstants.SPITTER_TRAPDOOR_TOGGLE_BUTTON)
+    // .whenPressed(spitterSetCommand.setState(1));
   }
 
   private void configureSubsystemCommands() {

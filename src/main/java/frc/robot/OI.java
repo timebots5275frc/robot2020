@@ -65,8 +65,8 @@ public class OI {
         // SmartDashboard Buttons
         SmartDashboard.putData("IntakeOn", new IntakeOn());
         SmartDashboard.putData("IntakeOff", new IntakeOff());
-        SmartDashboard.putData("SpitterOn", new SpitterOn());
-        SmartDashboard.putData("SpitterOff", new SpitterOff());
+        SmartDashboard.putData("SpitterSetOn", new SpitterSet(1));
+        SmartDashboard.putData("SpitterSetOff", new SpitterSet(0));
         SmartDashboard.putData("WinchRaise", new WinchRaise());
         SmartDashboard.putData("WinchHold", new WinchHold());
         SmartDashboard.putData("WinchLower", new WinchLower());
