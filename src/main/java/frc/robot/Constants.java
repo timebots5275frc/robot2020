@@ -64,7 +64,8 @@ public final class Constants {
 
     public static final class SpitterConstants {
         public static final int SPITTER_TRAPDOOR_TOGGLE_BUTTON = 7; // Temp button
-
+        public static final int VICTOR_CAN = 8;
+        public static final int SOLENOID_CAN = 1;
     }
 
 }
