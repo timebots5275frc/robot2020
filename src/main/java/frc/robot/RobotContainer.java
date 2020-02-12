@@ -7,11 +7,15 @@
 
 package frc.robot;
 
-
-
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.WinchSet;
+import frc.robot.commands.HopperAdvance;
+import frc.robot.commands.HopperReverse;
+import frc.robot.commands.SpitterSet;
 import frc.robot.subsystems.*;
 
 /**
@@ -28,12 +32,16 @@ public class RobotContainer {
   private static final Joystick driveStick = new Joystick(Constants.ControllerConstants.DRIVER_STICK_CHANNEL);
 
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
+
   public static Intake intake;
   public static Hopper hopper;
   public static Spitter spitter;
+  // public static SpitterSet spitterSetCommand;
+  public static SpitterSet spitterOff = new SpitterSet(0);
+  public static SpitterSet spitterOn = new SpitterSet(1);
+
   public static Telescope telescope;
   public static Winch winch;
-
 
   public RobotContainer() {
     // Configure the button bindings
@@ -44,12 +52,19 @@ public class RobotContainer {
     spitter = new Spitter();
     telescope = new Telescope();
     winch = new Winch();
-
   }
 
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_ADVANCE_BUTTON).whenPressed(new HopperAdvance());
+    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_REVERSE_BUTTON).whenPressed(new HopperReverse());
 
-  private void configureSubsystemCommands() {}
+    // new JoystickButton(driveStick,
+    // Constants.SpitterConstants.SPITTER_TRAPDOOR_TOGGLE_BUTTON)
+    // .whenPressed(spitterSetCommand.setState(1));
+  }
+
+  private void configureSubsystemCommands() {
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -59,7 +74,8 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
   }
-  public static Joystick getDriveStick(){
-      return driveStick;
+
+  public static Joystick getDriveStick() {
+    return driveStick;
   }
 }
