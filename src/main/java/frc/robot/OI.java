@@ -14,7 +14,6 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
-import frc.robot.subsystems.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -65,8 +64,8 @@ public class OI {
         // SmartDashboard Buttons
         SmartDashboard.putData("IntakeOn", new IntakeOn());
         SmartDashboard.putData("IntakeOff", new IntakeOff());
-        SmartDashboard.putData("SpitterSetOn", new SpitterSet(1));
-        SmartDashboard.putData("SpitterSetOff", new SpitterSet(0));
+        SmartDashboard.putData("SpitterOn", new SpitterOn());
+        SmartDashboard.putData("SpitterOff", new SpitterOff());
         SmartDashboard.putData("WinchRaise", new WinchRaise());
         SmartDashboard.putData("WinchHold", new WinchHold());
         SmartDashboard.putData("WinchLower", new WinchLower());

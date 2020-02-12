@@ -9,7 +9,6 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-
 /**
  * Add your docs here.
  */
@@ -40,6 +39,33 @@ public final class Constants {
 
     public static final class ControllerConstants {
         public static final int DRIVER_STICK_CHANNEL = 0;
+    }
+    public static final class WinchConstants{
+        public static final int WINCH_VICTOR_CHANNEL = 10;
+        public static final int WINCH_TALON_CHANNEL = 11;
+        public static final int SOLENOID_CHANNEL = 2;
+        public static final int SOLENOID_MODULE = 0;
+        public static final int WINCH_LIMIT_CHANNEL = 2;
+        public static final TalonSRXConfiguration WINCH_SRX_CONFIG = new TalonSRXConfiguration();
+        /**
+         * Circumference of winch drum in inches
+         */
+        public static final double WINCH_DRUM_CIRCUMFERENCE = 1.25 * Math.PI;
+
+        public static TalonSRXConfiguration getConfig(){
+            // TODO tune these values
+            WINCH_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
+            WINCH_SRX_CONFIG.neutralDeadband = 0.0;
+            WINCH_SRX_CONFIG.slot0.kP = 0.0;
+            WINCH_SRX_CONFIG.slot0.kI = 0.0;
+            WINCH_SRX_CONFIG.slot0.kD = 0.0;
+            WINCH_SRX_CONFIG.slot0.integralZone = 400;
+            WINCH_SRX_CONFIG.slot0.closedLoopPeakOutput = 1.0;
+            WINCH_SRX_CONFIG.closedloopRamp = .5;
+            WINCH_SRX_CONFIG.openloopRamp = .5;
+            return WINCH_SRX_CONFIG;
+
+        }
     }
 
     public static final class HopperConstants {

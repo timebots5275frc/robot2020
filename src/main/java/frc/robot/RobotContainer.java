@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.WinchSet;
 import frc.robot.commands.HopperAdvance;
 import frc.robot.commands.HopperReverse;
 import frc.robot.commands.SpitterSet;
