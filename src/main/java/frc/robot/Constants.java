@@ -16,6 +16,16 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 public final class Constants {
 
     /**
+     * @Title DriveTrainConstants
+     */
+    public static final class DriveTrainConstants {
+        public static final int RIGHT_TALON = 1;
+        public static final int RIGHT_VICTOR = 2;
+        public static final int LEFT_TALON = 3;
+        public static final int LEFT_VICTOR = 4;
+    }
+
+    /**
      * @Title TelescopeConstants
      */
     public static final class TelescopeConstants {
@@ -55,8 +65,8 @@ public final class Constants {
      * @Title WinchConstants
      */
     public static final class WinchConstants {
-        public static final int WINCH_VICTOR_CHANNEL = 10;
-        public static final int WINCH_TALON_CHANNEL = 11;
+        public static final int WINCH_VICTOR_CHANNEL = 11;
+        public static final int WINCH_TALON_CHANNEL = 10;
         public static final int SOLENOID_CHANNEL = 2;
         public static final int SOLENOID_MODULE = 0;
         public static final int WINCH_LIMIT_CHANNEL = 2;

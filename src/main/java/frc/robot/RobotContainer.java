@@ -16,6 +16,7 @@ import frc.robot.commands.WinchSet;
 import frc.robot.commands.HopperAdvance;
 import frc.robot.commands.HopperReverse;
 import frc.robot.commands.SpitterSet;
+import frc.robot.commands.TeleopDrive;
 import frc.robot.subsystems.*;
 
 /**
@@ -43,6 +44,9 @@ public class RobotContainer {
   public static Telescope telescope;
   public static Winch winch;
 
+  // public static WinchSet setWinchZero = new WinchSet(0);
+  public static WinchSet setWinchTwoInch = new WinchSet(2.0);
+
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
@@ -52,11 +56,24 @@ public class RobotContainer {
     spitter = new Spitter();
     telescope = new Telescope();
     winch = new Winch();
+
+    // driveTrainSubsystem.setDefaultCommand(
+    // // A split-stick arcade command, with forward/backward controlled by the left
+    // // hand, and turning controlled by the right.
+    // new TeleopDrive());
   }
 
   private void configureButtonBindings() {
-    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_ADVANCE_BUTTON).whenPressed(new HopperAdvance());
-    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_REVERSE_BUTTON).whenPressed(new HopperReverse());
+
+    // new JoystickButton(driveStick, 10).whenPressed(new TeleopDrive());
+
+    // new JoystickButton(driveStick,
+    // Constants.HopperConstants.HOPPER_ADVANCE_BUTTON).whenPressed(new
+    // HopperAdvance());
+    // new JoystickButton(driveStick,
+    // Constants.HopperConstants.HOPPER_REVERSE_BUTTON).whenPressed(new
+    // HopperReverse());
+    // new JoystickButton(driveStick, 10).whenPressed();
 
     // new JoystickButton(driveStick,
     // Constants.SpitterConstants.SPITTER_TRAPDOOR_TOGGLE_BUTTON)
