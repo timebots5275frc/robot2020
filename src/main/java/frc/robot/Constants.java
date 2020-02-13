@@ -14,6 +14,10 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
  * Add your docs here.
  */
 public final class Constants {
+
+    /**
+     * @Title TelescopeConstants
+     */
     public static final class TelescopeConstants {
         // TODO set these correct
         public static final int UP_SWITCH_CHANNEL = 0;
@@ -41,12 +45,15 @@ public final class Constants {
     }
 
     /**
-     * ControllerConstants
+     * @Title ControllerConstants
      */
     public static final class ControllerConstants {
         public static final int DRIVER_STICK_CHANNEL = 0;
     }
 
+    /**
+     * @Title WinchConstants
+     */
     public static final class WinchConstants {
         public static final int WINCH_VICTOR_CHANNEL = 10;
         public static final int WINCH_TALON_CHANNEL = 11;
@@ -74,6 +81,9 @@ public final class Constants {
         }
     }
 
+    /**
+     * @Title HopperConstants
+     */
     public static final class HopperConstants {
 
         public static final int HOPPER_ADVANCE_BUTTON = 6; // Temp button
@@ -94,6 +104,9 @@ public final class Constants {
         public static final double VICTOR_RAMPING = 0.1;
     }
 
+    /**
+     * @Title SpitterConstants
+     */
     public static final class SpitterConstants {
         public static final int SPITTER_TRAPDOOR_TOGGLE_BUTTON = 7; // Temp button
         public static final int VICTOR_CAN = 8;
