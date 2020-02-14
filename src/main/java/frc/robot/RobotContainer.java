@@ -34,7 +34,6 @@ public class RobotContainer {
 
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
-  public static Intake intake;
   public static Hopper hopper;
 
   // public static SpitterSet spitterSetCommand;
@@ -52,7 +51,6 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     configureSubsystemCommands();
-    intake = new Intake();
     hopper = new Hopper();
     // spitter = new Spitter();
 
