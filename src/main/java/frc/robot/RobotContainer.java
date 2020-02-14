@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.WinchSet;
 import frc.robot.commands.HopperAdvance;
 import frc.robot.commands.HopperReverse;
-import frc.robot.commands.SpitterSet;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
@@ -38,7 +37,6 @@ public class RobotContainer {
   public static Intake intake;
   public static Hopper hopper;
 
-  public static Spitter spitter;
   // public static SpitterSet spitterSetCommand;
   public static Command spitterOff;
   public static Command spitterOn;
