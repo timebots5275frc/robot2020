@@ -9,14 +9,29 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+
 /**
  * Add your docs here.
  */
 public final class Constants {
+
+    /**
+     * @Title DriveTrainConstants
+     */
+    public static final class DriveTrainConstants {
+        public static final int RIGHT_TALON = 1;
+        public static final int RIGHT_VICTOR = 2;
+        public static final int LEFT_TALON = 3;
+        public static final int LEFT_VICTOR = 4;
+    }
+
+    /**
+     * @Title TelescopeConstants
+     */
     public static final class TelescopeConstants {
         // TODO set these correct
         public static final int UP_SWITCH_CHANNEL = 0;
-        public static final int DOWN_SWITCH_CHANNEL = 0;
+        public static final int DOWN_SWITCH_CHANNEL = 1;
         public static final int TALON_CAN_CHANNEL = 9;
         public static final boolean UP_SWITCH_INVERTED = false;
         public static final boolean DOWN_SWITCH_INVERTED = false;
@@ -24,7 +39,7 @@ public final class Constants {
 
         public static final double TELE_DRUM_CIRCUMFERENCE = Math.PI * .75; // pi * .75" dia
 
-        public static TalonSRXConfiguration getConfig(){
+        public static TalonSRXConfiguration getConfig() {
             // TODO tune these values
             TELE_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
             TELE_SRX_CONFIG.neutralDeadband = 0.0;
@@ -39,12 +54,19 @@ public final class Constants {
         }
     }
 
+    /**
+     * @Title ControllerConstants
+     */
     public static final class ControllerConstants {
         public static final int DRIVER_STICK_CHANNEL = 0;
     }
-    public static final class WinchConstants{
-        public static final int WINCH_VICTOR_CHANNEL = 10;
-        public static final int WINCH_TALON_CHANNEL = 11;
+
+    /**
+     * @Title WinchConstants
+     */
+    public static final class WinchConstants {
+        public static final int WINCH_VICTOR_CHANNEL = 11;
+        public static final int WINCH_TALON_CHANNEL = 10;
         public static final int SOLENOID_CHANNEL = 2;
         public static final int SOLENOID_MODULE = 0;
         public static final int WINCH_LIMIT_CHANNEL = 2;
@@ -54,11 +76,11 @@ public final class Constants {
          */
         public static final double WINCH_DRUM_CIRCUMFERENCE = 1.25 * Math.PI;
 
-        public static TalonSRXConfiguration getConfig(){
+        public static TalonSRXConfiguration getConfig() {
             // TODO tune these values
             WINCH_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
             WINCH_SRX_CONFIG.neutralDeadband = 0.0;
-            WINCH_SRX_CONFIG.slot0.kP = 0.0;
+            WINCH_SRX_CONFIG.slot0.kP = 0.3;
             WINCH_SRX_CONFIG.slot0.kI = 0.0;
             WINCH_SRX_CONFIG.slot0.kD = 0.0;
             WINCH_SRX_CONFIG.slot0.integralZone = 400;
@@ -66,10 +88,12 @@ public final class Constants {
             WINCH_SRX_CONFIG.closedloopRamp = .5;
             WINCH_SRX_CONFIG.openloopRamp = .5;
             return WINCH_SRX_CONFIG;
-
         }
     }
 
+    /**
+     * @Title HopperConstants
+     */
     public static final class HopperConstants {
 
         public static final int HOPPER_ADVANCE_BUTTON = 6; // Temp button
@@ -90,6 +114,9 @@ public final class Constants {
         public static final double VICTOR_RAMPING = 0.1;
     }
 
+    /**
+     * @Title SpitterConstants
+     */
     public static final class SpitterConstants {
         public static final int SPITTER_TRAPDOOR_TOGGLE_BUTTON = 7; // Temp button
         public static final int VICTOR_CAN = 8;

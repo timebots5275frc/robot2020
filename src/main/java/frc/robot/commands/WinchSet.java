@@ -10,26 +10,36 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
+import frc.robot.subsystems.Winch;
 
 public class WinchSet extends CommandBase {
   private int _pos;
+  final Winch _win;
+
   /**
    * Creates a new WinchSet.
-   * @param position the position, in encoder counts, for this instance of WinchSet to seek to.
+   * 
+   * @param position the position, in encoder counts, for this instance of
+   *                 WinchSet to seek to.
    */
-  public WinchSet(int position) {
+  public WinchSet(Winch winch, int position) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.winch);
+    addRequirements(winch);
+    _win = winch;
     _pos = position;
+
   }
+
   /**
    * Creates a new WinchSet.
-   * @param pull the position, in inches of lift, for this instance of WinchSet to seek to.
+   * 
+   * @param pull the position, in inches of lift, for this instance of WinchSet to
+   *             seek to.
    */
-  public WinchSet(double pull){
-    addRequirements(RobotContainer.winch);
-    _pos = (int) RobotContainer.winch.rotationsToEnc(RobotContainer.winch.pullToRotations(pull));
+  public WinchSet(Winch winch, double pull) {
+    addRequirements(winch);
+    _win = winch;
+    _pos = (int) _win.rotationsToEnc(_win.pullToRotations(pull));
   }
 
   // Called when the command is initially scheduled.
@@ -40,7 +50,7 @@ public class WinchSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.winch.getMotor().set(ControlMode.Position, _pos);
+    _win.getMotor().set(ControlMode.Position, _pos);
   }
 
   // Called once the command ends or is interrupted.

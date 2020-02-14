@@ -16,6 +16,8 @@ import frc.robot.commands.WinchSet;
 import frc.robot.commands.HopperAdvance;
 import frc.robot.commands.HopperReverse;
 import frc.robot.commands.SpitterSet;
+import frc.robot.commands.TeleopDrive;
+import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
 
 /**
@@ -35,13 +37,18 @@ public class RobotContainer {
 
   public static Intake intake;
   public static Hopper hopper;
+
   public static Spitter spitter;
   // public static SpitterSet spitterSetCommand;
-  public static SpitterSet spitterOff = new SpitterSet(0);
-  public static SpitterSet spitterOn = new SpitterSet(1);
+  public static Command spitterOff;
+  public static Command spitterOn;
 
   public static Telescope telescope;
+  public static Command setTelescopeZero;
+
   public static Winch winch;
+  public static Command setWinchZero;
+  public static Command setWinchTenInch;
 
   public RobotContainer() {
     // Configure the button bindings
@@ -49,18 +56,31 @@ public class RobotContainer {
     configureSubsystemCommands();
     intake = new Intake();
     hopper = new Hopper();
-    spitter = new Spitter();
+    // spitter = new Spitter();
+
+    // Telescope //
     telescope = new Telescope();
+    setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
+    // //
+
+    // Winch //
     winch = new Winch();
+    setWinchZero = new WinchSet(winch, 0);
+    setWinchTenInch = new WinchSet(winch, 10.0);
+
+    // spitterOn = new SpitterSet(spitter, 1);
+    // spitterOff = new SpitterSet(spitter, 0);
+
+    // //
+
+    // driveTrainSubsystem.setDefaultCommand(
+    // // A split-stick arcade command, with forward/backward controlled by the left
+    // // hand, and turning controlled by the right.
+    // new TeleopDrive());
   }
 
   private void configureButtonBindings() {
-    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_ADVANCE_BUTTON).whenPressed(new HopperAdvance());
-    new JoystickButton(driveStick, Constants.HopperConstants.HOPPER_REVERSE_BUTTON).whenPressed(new HopperReverse());
-
-    // new JoystickButton(driveStick,
-    // Constants.SpitterConstants.SPITTER_TRAPDOOR_TOGGLE_BUTTON)
-    // .whenPressed(spitterSetCommand.setState(1));
+    // new JoystickButton(driveStick, 10).whenPressed(new TeleopDrive());
   }
 
   private void configureSubsystemCommands() {
