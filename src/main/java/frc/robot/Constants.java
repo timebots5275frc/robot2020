@@ -31,7 +31,7 @@ public final class Constants {
     public static final class TelescopeConstants {
         // TODO set these correct
         public static final int UP_SWITCH_CHANNEL = 0;
-        public static final int DOWN_SWITCH_CHANNEL = 0;
+        public static final int DOWN_SWITCH_CHANNEL = 1;
         public static final int TALON_CAN_CHANNEL = 9;
         public static final boolean UP_SWITCH_INVERTED = false;
         public static final boolean DOWN_SWITCH_INVERTED = false;

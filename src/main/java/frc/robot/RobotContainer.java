@@ -40,8 +40,8 @@ public class RobotContainer {
 
   public static Spitter spitter;
   // public static SpitterSet spitterSetCommand;
-  public static Command spitterOff = new SpitterSet(0);
-  public static Command spitterOn = new SpitterSet(1);
+  public static Command spitterOff;
+  public static Command spitterOn;
 
   public static Telescope telescope;
   public static Command setTelescopeZero;
@@ -56,17 +56,21 @@ public class RobotContainer {
     configureSubsystemCommands();
     intake = new Intake();
     hopper = new Hopper();
-    spitter = new Spitter();
+    // spitter = new Spitter();
 
     // Telescope //
     telescope = new Telescope();
-    setTelescopeZero = new TelescopeSeek(10.0); // 10 Inches
+    setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
     // //
 
     // Winch //
     winch = new Winch();
-    setWinchZero = new WinchSet(0);
-    setWinchTenInch = new WinchSet(10.0);
+    setWinchZero = new WinchSet(winch, 0);
+    setWinchTenInch = new WinchSet(winch, 10.0);
+
+    // spitterOn = new SpitterSet(spitter, 1);
+    // spitterOff = new SpitterSet(spitter, 0);
+
     // //
 
     // driveTrainSubsystem.setDefaultCommand(

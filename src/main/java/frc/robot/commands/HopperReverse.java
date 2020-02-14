@@ -13,51 +13,54 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Hopper;
 
 /**
  *
  */
-public class HopperReverse extends Command {
+public class HopperReverse extends CommandBase {
+    final Hopper _hop;
 
     private WPI_VictorSPX hopperVictorTop;
     private WPI_VictorSPX hopperVictorBottom;
 
-    public HopperReverse() {
-        requires(RobotContainer.hopper);
+    public HopperReverse(Hopper hop) {
+        _hop = hop;
+        addRequirements(_hop);
         hopperVictorTop = RobotContainer.hopper.getHopperVictorBottom();
         hopperVictorBottom = RobotContainer.hopper.getHopperVictorTop();
     }
 
     // Called just before this Command runs the first time
     @Override
-    protected void initialize() {
+    public void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
-    protected void execute() {
+    public void execute() {
         hopperVictorTop.set(ControlMode.PercentOutput, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
         hopperVictorBottom.set(ControlMode.PercentOutput, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
-    @Override
-    protected void end() {
-    }
+    // // Called once after isFinished returns true
+    // @Override
+    // public void end() {
+    // }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    @Override
-    protected void interrupted() {
-    }
+    // // Called when another command which requires one or more of the same
+    // // subsystems is scheduled to run
+    // @Override
+    // public void interrupted() {
+    // }
 }

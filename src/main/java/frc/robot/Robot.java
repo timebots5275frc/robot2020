@@ -113,15 +113,13 @@ public class Robot extends TimedRobot {
 
         Scheduler.getInstance().run();
 
-        // if (RobotContainer.getDriveStick().getRawButton(3)) {
-        // RobotContainer.setWinchZero.schedule();
-        // }
+        if (RobotContainer.getDriveStick().getRawButton(3)) {
+            RobotContainer.setWinchZero.schedule();
+        }
 
-        RobotContainer.winch.getMotor().set(ControlMode.PercentOutput, 0.5);
-
-        // if (RobotContainer.getDriveStick().getRawButton(4)) {
-        // RobotContainer.setWinchTwoInch.schedule();
-        // }
+        if (RobotContainer.getDriveStick().getRawButton(4)) {
+            RobotContainer.setWinchTenInch.schedule();
+        }
 
     }
 }
