@@ -80,7 +80,7 @@ public final class Constants {
             // TODO tune these values
             WINCH_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
             WINCH_SRX_CONFIG.neutralDeadband = 0.0;
-            WINCH_SRX_CONFIG.slot0.kP = 0.3;
+            WINCH_SRX_CONFIG.slot0.kP = 1;
             WINCH_SRX_CONFIG.slot0.kI = 0.0;
             WINCH_SRX_CONFIG.slot0.kD = 0.0;
             WINCH_SRX_CONFIG.slot0.integralZone = 400;

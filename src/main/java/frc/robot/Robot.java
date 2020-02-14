@@ -103,6 +103,7 @@ public class Robot extends TimedRobot {
         // this line or comment it out.
         if (autonomousCommand != null)
             autonomousCommand.cancel();
+        m_robotContainer.setWinchZero.schedule();
     }
 
     /**
@@ -113,13 +114,15 @@ public class Robot extends TimedRobot {
 
         Scheduler.getInstance().run();
 
-        if (RobotContainer.getDriveStick().getRawButton(3)) {
-            RobotContainer.setWinchZero.schedule();
+        if (m_robotContainer.getDriveStick().getRawButton(3)) {
+            System.out.println("zero winch");
+            m_robotContainer.setWinchZero.schedule();
+
         }
 
-        if (RobotContainer.getDriveStick().getRawButton(4)) {
-            RobotContainer.setWinchTenInch.schedule();
+        if (m_robotContainer.getDriveStick().getRawButton(4)) {
+            System.out.println("winch ten inch");
+            m_robotContainer.setWinchTenInch.schedule();
         }
-
     }
 }

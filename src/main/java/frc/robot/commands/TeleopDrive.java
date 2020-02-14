@@ -47,7 +47,7 @@ public class TeleopDrive extends Command {
 
         double throt = (RobotContainer.getDriveStick().getRawAxis(3) / 2) + 1;
         double fwd = (throt * RobotContainer.getDriveStick().getRawAxis(1) * -1);
-        System.out.println("throt = " + throt + "   fwd = " + fwd);
+        // System.out.println("throt = " + throt + " fwd = " + fwd);
 
         RobotContainer.driveTrainSubsystem.getDDrive()
                 .arcadeDrive(RobotContainer.getDriveStick().getRawAxis(2) * (throt / 2), fwd);
