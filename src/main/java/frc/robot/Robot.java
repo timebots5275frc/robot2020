@@ -106,19 +106,19 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
 
-        if (m_robotContainer.getDriveStick().getRawButton(5)) {
-            System.out.println("hopper start");
-            m_robotContainer.hopperAdvance.schedule();
-        } else {
-            m_robotContainer.hopperAdvance.cancel();
-        }
+        // if (m_robotContainer.getDriveStick().getRawButton(5)) {
+        // System.out.println("hopper start");
+        // m_robotContainer.hopperAdvance.schedule();
+        // } else {
+        // m_robotContainer.hopperAdvance.cancel();
+        // }
 
-        if (m_robotContainer.getDriveStick().getRawButton(3)) {
-            System.out.println("hopper Reverse");
-            m_robotContainer.hopperReverse.schedule();
-        } else {
-            m_robotContainer.hopperReverse.cancel();
-        }
+        // if (m_robotContainer.getDriveStick().getRawButton(3)) {
+        // System.out.println("hopper Reverse");
+        // m_robotContainer.hopperReverse.schedule();
+        // } else {
+        // m_robotContainer.hopperReverse.cancel();
+        // }
 
         // if (m_robotContainer.getDriveStick().getRawButton(11)) {
         // System.out.println("zero winch");
