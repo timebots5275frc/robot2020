@@ -20,7 +20,6 @@ import frc.robot.commands.HopperAdvance;
 import frc.robot.commands.HopperHold;
 import frc.robot.commands.HopperReverse;
 import frc.robot.commands.JoystickDrive;
-import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
 
@@ -54,8 +53,6 @@ public class RobotContainer {
   public static Winch winch;
   public static Command setWinchZero;
   public static Command setWinchTenInch;
-
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   /**
    * RobotContainer
