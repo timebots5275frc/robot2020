@@ -22,43 +22,43 @@ import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
 
-    private WPI_TalonSRX rightTalon1;
-    private WPI_VictorSPX rightVictor2;
-    private SpeedControllerGroup speedControllerGroup2;
-    private WPI_TalonSRX leftTalon3;
-    private WPI_VictorSPX leftVictor4;
-    private SpeedControllerGroup speedControllerGroup1;
-    private DifferentialDrive differentialDrive1;
+	private WPI_TalonSRX rightTalon1;
+	private WPI_VictorSPX rightVictor2;
+	private SpeedControllerGroup speedControllerGroup2;
+	private WPI_TalonSRX leftTalon3;
+	private WPI_VictorSPX leftVictor4;
+	private SpeedControllerGroup speedControllerGroup1;
+	private DifferentialDrive differentialDrive1;
 
-    public DriveTrain() {
-        rightTalon1 = new WPI_TalonSRX(1);
+	public DriveTrain() {
+		rightTalon1 = new WPI_TalonSRX(1);
 
-        rightVictor2 = new WPI_VictorSPX(2);
+		rightVictor2 = new WPI_VictorSPX(2);
 
-        speedControllerGroup2 = new SpeedControllerGroup(rightTalon1, rightVictor2);
-        addChild("Speed Controller Group 2", speedControllerGroup2);
+		speedControllerGroup2 = new SpeedControllerGroup(rightTalon1, rightVictor2);
+		addChild("Speed Controller Group 2", speedControllerGroup2);
 
-        leftTalon3 = new WPI_TalonSRX(3);
+		leftTalon3 = new WPI_TalonSRX(3);
 
-        leftVictor4 = new WPI_VictorSPX(4);
+		leftVictor4 = new WPI_VictorSPX(4);
 
-        speedControllerGroup1 = new SpeedControllerGroup(leftTalon3, leftVictor4);
-        addChild("Speed Controller Group 1", speedControllerGroup1);
+		speedControllerGroup1 = new SpeedControllerGroup(leftTalon3, leftVictor4);
+		addChild("Speed Controller Group 1", speedControllerGroup1);
 
-        differentialDrive1 = new DifferentialDrive(speedControllerGroup1, speedControllerGroup2);
-        addChild("Differential Drive 1", differentialDrive1);
-        // differentialDrive1.setSafetyEnabled(true);
-        differentialDrive1.setExpiration(0.1);
-        differentialDrive1.setMaxOutput(1.0);
-    }
+		differentialDrive1 = new DifferentialDrive(speedControllerGroup1, speedControllerGroup2);
+		addChild("Differential Drive 1", differentialDrive1);
+		// differentialDrive1.setSafetyEnabled(true);
+		differentialDrive1.setExpiration(0.1);
+		differentialDrive1.setMaxOutput(1.0);
+	}
 
-    @Override
-    public void periodic() {
-        // Put code here to be run every loop
+	@Override
+	public void periodic() {
+		// Put code here to be run every loop
 
-    }
+	}
 
-    public DifferentialDrive getDDrive() {
-        return differentialDrive1;
-    }
+	public DifferentialDrive getDDrive() {
+		return differentialDrive1;
+	}
 }
