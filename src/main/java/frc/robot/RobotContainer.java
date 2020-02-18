@@ -16,9 +16,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.WinchSet;
-import frc.robot.commands.HopperAdvance;
-import frc.robot.commands.HopperHold;
-import frc.robot.commands.HopperReverse;
+import frc.robot.commands.HopperSet;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
@@ -64,9 +62,9 @@ public class RobotContainer {
 
     // Telescope //
     hopper = new Hopper();
-    hopperAdvance = new HopperAdvance(hopper);
-    hopperStop = new HopperHold(hopper);
-    hopperReverse = new HopperReverse(hopper);
+    hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
+    hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
+    hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
     hopper.setDefaultCommand(hopperStop);
     // //
 
