@@ -11,33 +11,47 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Spitter;
 
-public class TelescopeSeek extends CommandBase {
+public class SpitterSet extends CommandBase {
 
-  final int _pos;
+  private int state;
+
   /**
-   * Creates a new TelescopeSeek.
-   * @param pos the encoder position the command will seek to
+   * Creates a new SpitterSet.\
    */
-  public TelescopeSeek(int pos) {
-    addRequirements(RobotContainer.telescope);
-    _pos = pos;
+  public SpitterSet(int setState) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    this.state = setState;
+    addRequirements(RobotContainer.spitter);
+  }
+
+  /**
+   * @param state 0 in/stop, 1 out/deploy
+   */
+  public void setState(int setState) {
+    this.state = setState;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // maybe implement a cancel of other TelescopeSeek objects here?
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!(RobotContainer.telescope.getUpSwitch()) && !(RobotContainer.telescope.getUpSwitch())){
-      RobotContainer.telescope.getMotor().set(ControlMode.Position, _pos);
+    Spitter subsystem = RobotContainer.spitter;
+
+    if (state == 0) {
+      subsystem.getTrapDoor().set(true);
+      subsystem.getVictor().set(ControlMode.PercentOutput, 0);
     }
-    else RobotContainer.telescope.getMotor().set(ControlMode.PercentOutput, 0.0); // TODO implement further
-    
+
+    if (state == 1) {
+      subsystem.getTrapDoor().set(false);
+      subsystem.getVictor().set(ControlMode.PercentOutput, 0.3);
+    }
   }
 
   // Called once the command ends or is interrupted.
