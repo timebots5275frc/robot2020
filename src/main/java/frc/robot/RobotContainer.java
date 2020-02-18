@@ -54,8 +54,6 @@ public class RobotContainer {
   public static Command setWinchZero;
   public static Command setWinchTenInch;
 
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-
   /**
    * RobotContainer
    */
