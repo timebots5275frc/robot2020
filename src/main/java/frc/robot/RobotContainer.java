@@ -57,8 +57,6 @@ public class RobotContainer {
      */
     public RobotContainer() {
         // Configure the button bindings
-        configureButtonBindings();
-        configureSubsystemCommands();
 
         // Hopper //
         hopper = new Hopper();
@@ -91,6 +89,9 @@ public class RobotContainer {
          * new SpitterSet(spitter, 0);
          */
         // //
+
+        configureButtonBindings();
+        configureSubsystemCommands();
     }
 
     private void configureButtonBindings() {
