@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -46,16 +47,16 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public DriveSubsystem() {
 
-    rightTalon1 = new WPI_TalonSRX(1);
+    rightTalon1 = new WPI_TalonSRX(Constants.DriveTrainConstants.RIGHT_TALON);
 
-    rightVictor2 = new WPI_VictorSPX(2);
+    rightVictor2 = new WPI_VictorSPX(Constants.DriveTrainConstants.RIGHT_VICTOR);
 
     m_rightMotors = new SpeedControllerGroup(rightTalon1, rightVictor2);
     addChild("Speed Controller Group 2", m_rightMotors);
 
-    leftTalon3 = new WPI_TalonSRX(3);
+    leftTalon3 = new WPI_TalonSRX(Constants.DriveTrainConstants.LEFT_TALON);
 
-    leftVictor4 = new WPI_VictorSPX(4);
+    leftVictor4 = new WPI_VictorSPX(Constants.DriveTrainConstants.LEFT_VICTOR);
 
     m_leftMotors = new SpeedControllerGroup(leftTalon3, leftVictor4);
     addChild("Speed Controller Group 1", m_leftMotors);
