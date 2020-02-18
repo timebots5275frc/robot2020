@@ -29,85 +29,85 @@ import frc.robot.subsystems.*;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  public DriveSubsystem driveTrainSubsystem = new DriveSubsystem();
+	// The robot's subsystems and commands are defined here...
+	public DriveSubsystem driveTrainSubsystem = new DriveSubsystem();
 
-  public Joystick driveStick = new Joystick(Constants.ControllerConstants.DRIVER_STICK_CHANNEL);
+	public Joystick driveStick = new Joystick(Constants.ControllerConstants.DRIVER_STICK_CHANNEL);
 
-  private final SendableChooser<Command> autoChooser = new SendableChooser<>();
+	private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
-  public static Hopper hopper;
-  public Command hopperAdvance;
-  public Command hopperStop;
-  public Command hopperReverse;
+	public static Hopper hopper;
+	public Command hopperAdvance;
+	public Command hopperStop;
+	public Command hopperReverse;
 
-  // public static SpitterSet spitterSetCommand;
-  public static Command spitterOff;
-  public static Command spitterOn;
+	// public static SpitterSet spitterSetCommand;
+	public static Command spitterOff;
+	public static Command spitterOn;
 
-  public static Telescope telescope;
-  public static Command setTelescopeZero;
+	public static Telescope telescope;
+	public static Command setTelescopeZero;
 
-  public static Winch winch;
-  public static Command setWinchZero;
-  public static Command setWinchTenInch;
+	public static Winch winch;
+	public static Command setWinchZero;
+	public static Command setWinchTenInch;
 
-  /**
-   * RobotContainer
-   */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-    configureSubsystemCommands();
+	/**
+	 * RobotContainer
+	 */
+	public RobotContainer() {
+		// Configure the button bindings
+		configureButtonBindings();
+		configureSubsystemCommands();
 
-    // Telescope //
-    hopper = new Hopper();
-    hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
-    hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
-    hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
-    hopper.setDefaultCommand(hopperStop);
-    // //
+		hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
+		hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
+		hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
+		hopper.setDefaultCommand(hopperStop);
+		// //
+		hopper = new Hopper();
+		// Telescope //
 
-    // spitter = new Spitter();
+		// spitter = new Spitter();
 
-    // Telescope //
-    telescope = new Telescope();
-    setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
-    // //
+		// Telescope //
+		telescope = new Telescope();
+		setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
+		// //
 
-    // Winch //
-    winch = new Winch();
-    setWinchZero = new WinchSet(winch, 0);
-    setWinchTenInch = new WinchSet(winch, 10.0);
-    // //
+		// Winch //
+		winch = new Winch();
+		setWinchZero = new WinchSet(winch, 0);
+		setWinchTenInch = new WinchSet(winch, 10.0);
+		// //
 
-    driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
+		driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
-    // spitterOn = new SpitterSet(spitter, 1);
-    // spitterOff = new SpitterSet(spitter, 0);
+		// spitterOn = new SpitterSet(spitter, 1);
+		// spitterOff = new SpitterSet(spitter, 0);
 
-    // //
-  }
+		// //
+	}
 
-  private void configureButtonBindings() {
+	private void configureButtonBindings() {
 
-    new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
-    new JoystickButton(driveStick, 3).whenActive(hopperStop);
-  }
+		new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
+		new JoystickButton(driveStick, 3).whenActive(hopperStop);
+	}
 
-  private void configureSubsystemCommands() {
-  }
+	private void configureSubsystemCommands() {
+	}
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    return autoChooser.getSelected();
-  }
+	/**
+	 * Use this to pass the autonomous command to the main {@link Robot} class.
+	 *
+	 * @return the command to run in autonomous
+	 */
+	public Command getAutonomousCommand() {
+		return autoChooser.getSelected();
+	}
 
-  public Joystick getDriveStick() {
-    return driveStick;
-  }
+	public Joystick getDriveStick() {
+		return driveStick;
+	}
 }

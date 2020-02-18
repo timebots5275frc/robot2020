@@ -27,52 +27,52 @@ import edu.wpi.first.wpilibj.DigitalInput;
  */
 public class Telescope extends SubsystemBase {
 
-    private WPI_TalonSRX _talon;
-    private DigitalInput downSwitch;
-    private DigitalInput upSwitch;
+	private WPI_TalonSRX _talon;
+	private DigitalInput downSwitch;
+	private DigitalInput upSwitch;
 
-    public Telescope() {
-        _talon = new WPI_TalonSRX(TelescopeConstants.TALON_CAN_CHANNEL);
-        downSwitch = new DigitalInput(TelescopeConstants.DOWN_SWITCH_CHANNEL);
-        upSwitch = new DigitalInput(TelescopeConstants.UP_SWITCH_CHANNEL);
-        _talon.configAllSettings(TelescopeConstants.getConfig());
-        _talon.setSelectedSensorPosition(0);
-    }
+	public Telescope() {
+		_talon = new WPI_TalonSRX(TelescopeConstants.TALON_CAN_CHANNEL);
+		downSwitch = new DigitalInput(TelescopeConstants.DOWN_SWITCH_CHANNEL);
+		upSwitch = new DigitalInput(TelescopeConstants.UP_SWITCH_CHANNEL);
+		_talon.configAllSettings(TelescopeConstants.getConfig());
+		_talon.setSelectedSensorPosition(0);
+	}
 
-    @Override
-    public void periodic() {
-        // Put code here to be run every loop
+	@Override
+	public void periodic() {
+		// Put code here to be run every loop
 
-    }
+	}
 
-    public WPI_TalonSRX getMotor() {
-        return _talon;
-    }
+	public WPI_TalonSRX getMotor() {
+		return _talon;
+	}
 
-    /**
-     * gets the state of up limit switch
-     * 
-     * @return false if it is "safe" to continue moving, true if movement should be
-     *         stopped
-     */
-    public boolean getUpSwitch() {
-        if (TelescopeConstants.UP_SWITCH_INVERTED)
-            return !upSwitch.get();
-        else
-            return upSwitch.get();
-    }
+	/**
+	 * gets the state of up limit switch
+	 * 
+	 * @return false if it is "safe" to continue moving, true if movement should be
+	 *         stopped
+	 */
+	public boolean getUpSwitch() {
+		if (TelescopeConstants.UP_SWITCH_INVERTED)
+			return !upSwitch.get();
+		else
+			return upSwitch.get();
+	}
 
-    /**
-     * gets the state of down limit switch
-     * 
-     * @return false if it is "safe" to continue moving, true if movement should be
-     *         stopped
-     */
-    public boolean getDownSwitch() {
-        if (TelescopeConstants.DOWN_SWITCH_INVERTED)
-            return !downSwitch.get();
-        else
-            return downSwitch.get();
-    }
+	/**
+	 * gets the state of down limit switch
+	 * 
+	 * @return false if it is "safe" to continue moving, true if movement should be
+	 *         stopped
+	 */
+	public boolean getDownSwitch() {
+		if (TelescopeConstants.DOWN_SWITCH_INVERTED)
+			return !downSwitch.get();
+		else
+			return downSwitch.get();
+	}
 
 }
