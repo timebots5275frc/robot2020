@@ -12,6 +12,7 @@ package frc.robot.subsystems;
 
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -19,7 +20,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends SubsystemBase {
 
     private WPI_TalonSRX rightTalon1;
     private WPI_VictorSPX rightVictor2;
@@ -46,15 +47,9 @@ public class DriveTrain extends Subsystem {
 
         differentialDrive1 = new DifferentialDrive(speedControllerGroup1, speedControllerGroup2);
         addChild("Differential Drive 1", differentialDrive1);
-        differentialDrive1.setSafetyEnabled(true);
+        // differentialDrive1.setSafetyEnabled(true);
         differentialDrive1.setExpiration(0.1);
         differentialDrive1.setMaxOutput(1.0);
-
-    }
-
-    @Override
-    public void initDefaultCommand() {
-        setDefaultCommand(new TeleopDrive());
     }
 
     @Override

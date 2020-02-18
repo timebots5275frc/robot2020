@@ -103,9 +103,9 @@ public final class Constants {
         public static final int VICTOR_CAN_BOTTOM = 7;
 
         // ControlMode.PercentOutput Value should range from 0 to 1; Ex 0.5 = 50%;
-        public static final double HOPPER_ADVANCE_SPEED = 0.3;
+        public static final double HOPPER_ADVANCE_SPEED = 0.75;
         public static final double HOPPER_HOLD_SPEED = 0;
-        public static final double HOPPER_REVERSE_SPEED = -0.3;
+        public static final double HOPPER_REVERSE_SPEED = -0.75;
 
         /**
          * Minimum desired time to go from neutral to full throttle. A value of '0' will

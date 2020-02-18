@@ -7,14 +7,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+// import edu.wpi.first.wpilibj.buttons.Button;
+// import edu.wpi.first.wpilibj.buttons.JosystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.WinchSet;
 import frc.robot.commands.HopperAdvance;
+import frc.robot.commands.HopperHold;
 import frc.robot.commands.HopperReverse;
+import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
@@ -28,13 +33,16 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public static final DriveTrain driveTrainSubsystem = new DriveTrain();
+  public DriveSubsystem driveTrainSubsystem = new DriveSubsystem();
 
-  private static final Joystick driveStick = new Joystick(Constants.ControllerConstants.DRIVER_STICK_CHANNEL);
+  public Joystick driveStick = new Joystick(Constants.ControllerConstants.DRIVER_STICK_CHANNEL);
 
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public static Hopper hopper;
+  public Command hopperAdvance;
+  public Command hopperStop;
+  public Command hopperReverse;
 
   // public static SpitterSet spitterSetCommand;
   public static Command spitterOff;
@@ -47,11 +55,24 @@ public class RobotContainer {
   public static Command setWinchZero;
   public static Command setWinchTenInch;
 
+  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+
+  /**
+   * RobotContainer
+   */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     configureSubsystemCommands();
+
+    // Telescope //
     hopper = new Hopper();
+    hopperAdvance = new HopperAdvance(hopper);
+    hopperStop = new HopperHold(hopper);
+    hopperReverse = new HopperReverse(hopper);
+    hopper.setDefaultCommand(hopperStop);
+    // //
+
     // spitter = new Spitter();
 
     // Telescope //
@@ -63,20 +84,20 @@ public class RobotContainer {
     winch = new Winch();
     setWinchZero = new WinchSet(winch, 0);
     setWinchTenInch = new WinchSet(winch, 10.0);
+    // //
+
+    driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
     // spitterOn = new SpitterSet(spitter, 1);
     // spitterOff = new SpitterSet(spitter, 0);
 
     // //
-
-    // driveTrainSubsystem.setDefaultCommand(
-    // // A split-stick arcade command, with forward/backward controlled by the left
-    // // hand, and turning controlled by the right.
-    // new TeleopDrive());
   }
 
   private void configureButtonBindings() {
 
+    new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
+    new JoystickButton(driveStick, 3).whenActive(hopperStop);
   }
 
   private void configureSubsystemCommands() {
@@ -91,7 +112,7 @@ public class RobotContainer {
     return autoChooser.getSelected();
   }
 
-  public static Joystick getDriveStick() {
+  public Joystick getDriveStick() {
     return driveStick;
   }
 }

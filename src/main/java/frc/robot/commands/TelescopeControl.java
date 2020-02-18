@@ -31,7 +31,8 @@ public class TelescopeControl extends CommandBase {
   @Override
   public void execute() {
     // TODO verify this axis
-    RobotContainer.telescope.getMotor().set(ControlMode.PercentOutput, RobotContainer.getDriveStick().getRawAxis(3));
+    // RobotContainer.telescope.getMotor().set(ControlMode.PercentOutput,
+    // RobotContainer.getDriveStick().getRawAxis(3)); // - Lucas
   }
 
   // Called once the command ends or is interrupted.
