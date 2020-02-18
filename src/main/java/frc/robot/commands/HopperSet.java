@@ -16,16 +16,24 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Hopper;
 
 public class HopperSet extends CommandBase {
-	final Hopper _hop;
+	final Hopper hopperSubsystem;
 
 	private WPI_VictorSPX hopperVictorTop;
 	private WPI_VictorSPX hopperVictorBottom;
 
-	public HopperSet(Hopper hop) {
-		_hop = hop;
-		addRequirements(_hop);
-		hopperVictorTop = RobotContainer.hopper.getHopperVictorBottom();
-		hopperVictorBottom = RobotContainer.hopper.getHopperVictorTop();
+	private double speedPercent;
+
+	/**
+	 * @param hopperSubsystem Between -1 to 1
+	 * @param speedPercent
+	 */
+	public HopperSet(Hopper hopperSubsystem, double speedPercent) {
+		this.hopperSubsystem = hopperSubsystem;
+		this.speedPercent = speedPercent;
+
+		addRequirements(hopperSubsystem);
+		hopperVictorTop = hopperSubsystem.getHopperVictorBottom();
+		hopperVictorBottom = hopperSubsystem.getHopperVictorTop();
 	}
 
 	// Called just before this Command runs the first time
@@ -37,8 +45,8 @@ public class HopperSet extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	public void execute() {
-		hopperVictorTop.set(ControlMode.PercentOutput, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
-		hopperVictorBottom.set(ControlMode.PercentOutput, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
+		hopperVictorTop.set(ControlMode.PercentOutput, speedPercent);
+		hopperVictorBottom.set(ControlMode.PercentOutput, speedPercent);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
