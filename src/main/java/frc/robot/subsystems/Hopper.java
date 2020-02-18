@@ -11,14 +11,14 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  *
  */
-public class Hopper extends SubsystemBase {
+public class Hopper extends Subsystem {
 
     private WPI_VictorSPX hopperVictorTop;
     private WPI_VictorSPX hopperVictorBottom;
@@ -49,6 +49,11 @@ public class Hopper extends SubsystemBase {
      */
     public WPI_VictorSPX getHopperVictorBottom() {
         return hopperVictorBottom;
+    }
+
+    @Override
+    public void initDefaultCommand() {
+        setDefaultCommand(new HopperHold());
     }
 
     @Override

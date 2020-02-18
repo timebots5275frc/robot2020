@@ -12,6 +12,5 @@
     "**/.settings": true,
     "**/.factorypath": true,
     "**/*~": true
-  },
-  "wpilib.deployOffline": false
+  }
 }
