@@ -60,13 +60,13 @@ public class RobotContainer {
 		configureButtonBindings();
 		configureSubsystemCommands();
 
-    hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
-    hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
-    hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
-    hopper.setDefaultCommand(hopperStop);
-    // //
-    hopper = new Hopper();
-    // Telescope //
+		hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
+		hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
+		hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
+		hopper.setDefaultCommand(hopperStop);
+		// //
+		hopper = new Hopper();
+		// Telescope //
 
 		// spitter = new Spitter();
 
