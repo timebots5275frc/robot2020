@@ -10,20 +10,22 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.Spitter;
 
 public class SpitterSet extends CommandBase {
 
   private int state;
 
+  private Spitter subsystem;
+
   /**
    * Creates a new SpitterSet.\
    */
-  public SpitterSet(int setState) {
+  public SpitterSet(Spitter subsystem, int setState) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.state = setState;
-    addRequirements(RobotContainer.spitter);
+    this.subsystem = subsystem;
+    addRequirements(subsystem);
   }
 
   /**
@@ -41,7 +43,6 @@ public class SpitterSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Spitter subsystem = RobotContainer.spitter;
 
     if (state == 0) {
       subsystem.getTrapDoor().set(true);
