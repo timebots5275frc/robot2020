@@ -20,20 +20,52 @@ public class DriveSubsystem extends SubsystemBase {
    * Motor Diagram |1 3| |2 4|
    */
 
-  // The motors on the left side of the drive.
-  private final SpeedControllerGroup m_leftMotors = new SpeedControllerGroup(new WPI_TalonSRX(1), new WPI_VictorSPX(2));
+  private WPI_TalonSRX rightTalon1;
+  private WPI_VictorSPX rightVictor2;
+  private SpeedControllerGroup m_rightMotors;
+  private WPI_TalonSRX leftTalon3;
+  private WPI_VictorSPX leftVictor4;
+  private SpeedControllerGroup m_leftMotors;
+  private DifferentialDrive m_drive;
 
-  // The motors on the right side of the drive.
-  private final SpeedControllerGroup m_rightMotors = new SpeedControllerGroup(new WPI_TalonSRX(3),
-      new WPI_VictorSPX(4));
+  // // The motors on the left side of the drive.
+  // private final SpeedControllerGroup m_leftMotors = new
+  // SpeedControllerGroup(new WPI_TalonSRX(1), new WPI_VictorSPX(2));
 
-  // The robot's drive
-  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+  // // The motors on the right side of the drive.
+  // private final SpeedControllerGroup m_rightMotors = new
+  // SpeedControllerGroup(new WPI_TalonSRX(3),
+  // new WPI_VictorSPX(4));
+
+  // // The robot's drive
+  // private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors,
+  // m_rightMotors);
 
   /**
    * Creates a new DriveSubsystem.
    */
   public DriveSubsystem() {
+
+    rightTalon1 = new WPI_TalonSRX(1);
+
+    rightVictor2 = new WPI_VictorSPX(2);
+
+    m_rightMotors = new SpeedControllerGroup(rightTalon1, rightVictor2);
+    addChild("Speed Controller Group 2", m_rightMotors);
+
+    leftTalon3 = new WPI_TalonSRX(3);
+
+    leftVictor4 = new WPI_VictorSPX(4);
+
+    m_leftMotors = new SpeedControllerGroup(leftTalon3, leftVictor4);
+    addChild("Speed Controller Group 1", m_leftMotors);
+
+    m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+    addChild("Differential Drive 1", m_drive);
+    // differentialDrive1.setSafetyEnabled(true);
+    m_drive.setExpiration(0.1);
+    m_drive.setMaxOutput(1.0);
+
     m_rightMotors.setInverted(true);
     m_leftMotors.setInverted(true);
   }
@@ -44,8 +76,13 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fwd the commanded forward movement
    * @param rot the commanded rotation
    */
+
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(fwd, rot);
+  }
+
+  public DifferentialDrive getDDrive() {
+    return m_drive;
   }
 
   /**
