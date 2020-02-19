@@ -12,17 +12,17 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
-public class IntakeSet extends CommandBase {
+public class IntakeSpeedSet extends CommandBase {
 
+  private double speed;
   private Intake subsystem;
-  private int state;
 
   /**
-   * Creates a new IntakeSet.
+   * Creates a new IntakeSpeedSet.
    */
-  public IntakeSet(Intake subsystem, int state) {
+  public IntakeSpeedSet(Intake subsystem, double speed) {
     this.subsystem = subsystem;
-    this.state = state;
+    this.speed = speed;
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -35,17 +35,7 @@ public class IntakeSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if (state == 0) {
-      subsystem.getSolenoid().set(false);
-      subsystem.getVictor().set(ControlMode.PercentOutput, 0);
-    }
-
-    if (state == 1) {
-      subsystem.getSolenoid().set(true);
-      subsystem.getVictor().set(ControlMode.PercentOutput, 0.3);
-    }
-
+    subsystem.getVictor().set(ControlMode.PercentOutput, speed);
   }
 
   // Called once the command ends or is interrupted.

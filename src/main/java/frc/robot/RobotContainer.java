@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.WinchSet;
 import frc.robot.commands.HopperSet;
+import frc.robot.commands.IntakeSolenoidSet;
+import frc.robot.commands.IntakeSpeedSet;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.SpitterSet;
 import frc.robot.commands.TelescopeSeek;
@@ -53,11 +55,26 @@ public class RobotContainer {
     public static Command setWinchZero;
     public static Command setWinchTenInch;
 
+    public static Intake intake;
+    public static Command deployIntake;
+    public static Command retractIntake;
+    public static Command startIntake;
+    public static Command stopIntake;
+
     /**
      * RobotContainer
      */
     public RobotContainer() {
         // Configure the button bindings
+
+        // Intake //
+        intake = new Intake();
+        deployIntake = new IntakeSolenoidSet(intake, true);
+        retractIntake = new IntakeSolenoidSet(intake, false);
+        startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
+        stopIntake = new IntakeSpeedSet(intake, 0);
+        intake.setDefaultCommand(stopIntake);
+        // //
 
         // Hopper //
         hopper = new Hopper();

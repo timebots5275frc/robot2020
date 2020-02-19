@@ -129,6 +129,8 @@ public final class Constants {
     public static final class IntakeConstants {
         public static final int INTAKE_VICTOR_CHANNEL = 5;
         public static final int SOLENOID_CHANNEL = 2;
+        public static final double INTAKE_SPEED = 0.3;
+
     }
 
 }
