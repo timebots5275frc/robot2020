@@ -41,9 +41,9 @@ public class RobotContainer {
     public Command hopperStop;
     public Command hopperReverse;
 
-    // public static SpitterSet spitterSetCommand;
-    public static Command spitterOff;
-    public static Command spitterOn;
+    // // public static SpitterSet spitterSetCommand;
+    // public static Command spitterOff;
+    // public static Command spitterOn;
 
     public static Telescope telescope;
     public static Command setTelescopeZero;
