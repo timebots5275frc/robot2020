@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Spitter;
 
 public class SpitterSet extends CommandBase {
-
   private int state;
   private Spitter subsystem;
 

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Hopper;
 
 public class HopperSet extends CommandBase {
+    
     final Hopper hopperSubsystem;
 
     private WPI_VictorSPX hopperVictorTop;

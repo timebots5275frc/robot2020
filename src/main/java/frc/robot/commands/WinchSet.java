@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Winch;
 
 public class WinchSet extends CommandBase {
+	
 	private int _pos;
 	final Winch _win;
 

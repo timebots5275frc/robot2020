@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
 public class IntakeSpeedSet extends CommandBase {
+  
 
   private double speed;
   private Intake subsystem;
