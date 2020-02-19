@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.WinchSet;
 import frc.robot.commands.HopperSet;
 import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.SpitterSet;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
 
@@ -41,9 +42,9 @@ public class RobotContainer {
     public Command hopperStop;
     public Command hopperReverse;
 
-    // // public static SpitterSet spitterSetCommand;
-    // public static Command spitterOff;
-    // public static Command spitterOn;
+    public static Spitter spitter;
+    public static Command spitterOff;
+    public static Command spitterOn;
 
     public static Telescope telescope;
     public static Command setTelescopeZero;
@@ -84,10 +85,9 @@ public class RobotContainer {
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
         // Spitter //
-        /*
-         * spitter = new Spitter(); spitterOn = new SpitterSet(spitter, 1); spitterOff =
-         * new SpitterSet(spitter, 0);
-         */
+        spitter = new Spitter();
+        spitterOff = new SpitterSet(spitter, 0);
+        spitterOn = new SpitterSet(spitter, 1);
         // //
 
         configureButtonBindings();
