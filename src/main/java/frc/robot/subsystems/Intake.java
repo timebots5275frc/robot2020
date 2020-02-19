@@ -28,6 +28,14 @@ public class Intake extends SubsystemBase {
     intakeVictor = new WPI_VictorSPX(Constants.IntakeConstants.INTAKE_VICTOR_CHANNEL);
   }
 
+  public Solenoid getSolenoid() {
+    return solenoid;
+  }
+
+  public WPI_VictorSPX getVictor() {
+    return intakeVictor;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
