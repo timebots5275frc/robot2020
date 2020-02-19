@@ -37,12 +37,12 @@ public class IntakeSet extends CommandBase {
   public void execute() {
 
     if (state == 0) {
-      subsystem.getSolenoid().set(true);
+      subsystem.getSolenoid().set(false);
       subsystem.getVictor().set(ControlMode.PercentOutput, 0);
     }
 
     if (state == 1) {
-      subsystem.getSolenoid().set(false);
+      subsystem.getSolenoid().set(true);
       subsystem.getVictor().set(ControlMode.PercentOutput, 0.3);
     }
 

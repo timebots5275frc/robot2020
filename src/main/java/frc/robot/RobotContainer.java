@@ -68,10 +68,6 @@ public class RobotContainer {
         // //
 
         // Telescope //
-
-        // //
-
-        // Telescope //
         telescope = new Telescope();
         setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
         // //
@@ -82,13 +78,13 @@ public class RobotContainer {
         setWinchTenInch = new WinchSet(winch, 10.0);
         // //
 
-        driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
-
         // Spitter //
         spitter = new Spitter();
         spitterOff = new SpitterSet(spitter, 0);
         spitterOn = new SpitterSet(spitter, 1);
         // //
+
+        driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
         configureButtonBindings();
         configureSubsystemCommands();
