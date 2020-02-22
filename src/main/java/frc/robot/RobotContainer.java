@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.WinchSet;
+import frc.robot.commands.ExtendClimbSystem;
 import frc.robot.commands.HopperSet;
 import frc.robot.commands.IntakeSolenoidSet;
 import frc.robot.commands.IntakeSpeedSet;
@@ -62,6 +63,10 @@ public class RobotContainer {
     public static Command startIntake;
     public static Command stopIntake;
 
+    public static Command extendCommand;
+    public static Command retractCommand;
+    public static Command halfwayCommand;
+
     /**
      * RobotContainer
      */
@@ -97,6 +102,12 @@ public class RobotContainer {
         setWinchTenInch = new WinchSet(winch, 10.0);
         // //
 
+
+        // EXTEND/RETRACT
+        extendCommand = new ExtendClimbSystem(telescope, winch, 40960);
+        retractCommand = new ExtendClimbSystem(telescope, winch, 0);
+        halfwayCommand = new ExtendClimbSystem(telescope, winch, 40960/2);
+
         // // Spitter //
         // spitter = new Spitter();
         // spitterOff = new SpitterSet(spitter, 0);
@@ -113,8 +124,9 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
         new JoystickButton(driveStick, 3).whenActive(hopperStop);
-        new JoystickButton(driveStick, 4).whenActive(setTelescopeZero);
-        new JoystickButton(driveStick, 6).whenActive(setTelescopeHigh);
+        new JoystickButton(driveStick, 4).whenActive(retractCommand);
+        new JoystickButton(driveStick, 1).whenActive(halfwayCommand); 
+        new JoystickButton(driveStick, 6).whenActive(extendCommand);
     }
 
     private void configureSubsystemCommands() {
