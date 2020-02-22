@@ -50,6 +50,7 @@ public class RobotContainer {
 
     public static Telescope telescope;
     public static Command setTelescopeZero;
+    public static Command setTelescopeHigh;
 
     public static Winch winch;
     public static Command setWinchZero;
@@ -68,12 +69,12 @@ public class RobotContainer {
         // Configure the button bindings
 
         // Intake //
-        intake = new Intake();
-        deployIntake = new IntakeSolenoidSet(intake, true);
-        retractIntake = new IntakeSolenoidSet(intake, false);
-        startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
-        stopIntake = new IntakeSpeedSet(intake, 0);
-        intake.setDefaultCommand(stopIntake);
+        // intake = new Intake();
+        // deployIntake = new IntakeSolenoidSet(intake, true);
+        // retractIntake = new IntakeSolenoidSet(intake, false);
+        // startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
+        // stopIntake = new IntakeSpeedSet(intake, 0);
+        // intake.setDefaultCommand(stopIntake);
         // //
 
         // Hopper //
@@ -86,7 +87,8 @@ public class RobotContainer {
 
         // Telescope //
         telescope = new Telescope();
-        setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
+        setTelescopeZero = new TelescopeSeek(telescope, 0); // 0in
+        setTelescopeHigh = new TelescopeSeek(telescope, 6*4096);
         // //
 
         // Winch //
@@ -95,10 +97,10 @@ public class RobotContainer {
         setWinchTenInch = new WinchSet(winch, 10.0);
         // //
 
-        // Spitter //
-        spitter = new Spitter();
-        spitterOff = new SpitterSet(spitter, 0);
-        spitterOn = new SpitterSet(spitter, 1);
+        // // Spitter //
+        // spitter = new Spitter();
+        // spitterOff = new SpitterSet(spitter, 0);
+        // spitterOn = new SpitterSet(spitter, 1);
         // //
 
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
@@ -111,6 +113,8 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
         new JoystickButton(driveStick, 3).whenActive(hopperStop);
+        new JoystickButton(driveStick, 4).whenActive(setTelescopeZero);
+        new JoystickButton(driveStick, 6).whenActive(setTelescopeHigh);
     }
 
     private void configureSubsystemCommands() {

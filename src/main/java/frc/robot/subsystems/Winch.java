@@ -27,8 +27,9 @@ public class Winch extends SubsystemBase {
 		addChild("limitSwitch2", limitSwitch2);
 
 		winchTalon10.configAllSettings(WinchConstants.getConfig());
+		winchTalon10.setSensorPhase(true);
 		winchVictor11.follow(winchTalon10);
-		winchVictor11.setInverted(InvertType.FollowMaster); // inverse of the master
+		winchVictor11.setInverted(InvertType.OpposeMaster); // inverse of the master
 		winchTalon10.setNeutralMode(NeutralMode.Brake);
 		winchVictor11.setNeutralMode(NeutralMode.Brake);
 		zeroMotor();

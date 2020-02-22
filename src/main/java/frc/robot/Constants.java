@@ -9,6 +9,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 
 /**
  * Add your docs here.
@@ -42,12 +43,12 @@ public final class Constants {
         public static TalonSRXConfiguration getConfig() {
             // TODO tune these values
             TELE_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
-            TELE_SRX_CONFIG.neutralDeadband = 0.0;
-            TELE_SRX_CONFIG.slot0.kP = 0.0;
+            TELE_SRX_CONFIG.neutralDeadband = 0.005;
+            TELE_SRX_CONFIG.slot0.kP = 1.5;
             TELE_SRX_CONFIG.slot0.kI = 0.0;
-            TELE_SRX_CONFIG.slot0.kD = 0.0;
+            TELE_SRX_CONFIG.slot0.kD = 50000.0;
             TELE_SRX_CONFIG.slot0.integralZone = 400;
-            TELE_SRX_CONFIG.slot0.closedLoopPeakOutput = 1.0;
+            TELE_SRX_CONFIG.slot0.closedLoopPeakOutput = 0.75;
             TELE_SRX_CONFIG.closedloopRamp = .5;
             TELE_SRX_CONFIG.openloopRamp = .5;
             return TELE_SRX_CONFIG;
@@ -79,14 +80,16 @@ public final class Constants {
         public static TalonSRXConfiguration getConfig() {
             // TODO tune these values
             WINCH_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
-            WINCH_SRX_CONFIG.neutralDeadband = 0.0;
-            WINCH_SRX_CONFIG.slot0.kP = 1;
+            WINCH_SRX_CONFIG.neutralDeadband = 0.005;
+            WINCH_SRX_CONFIG.slot0.kP = 0.35;
             WINCH_SRX_CONFIG.slot0.kI = 0.0;
-            WINCH_SRX_CONFIG.slot0.kD = 0.0;
+            WINCH_SRX_CONFIG.slot0.kD = 500000.0;
             WINCH_SRX_CONFIG.slot0.integralZone = 400;
             WINCH_SRX_CONFIG.slot0.closedLoopPeakOutput = 1.0;
             WINCH_SRX_CONFIG.closedloopRamp = .5;
             WINCH_SRX_CONFIG.openloopRamp = .5;
+            WINCH_SRX_CONFIG.forwardLimitSwitchSource = LimitSwitchSource.Deactivated ;
+            WINCH_SRX_CONFIG.reverseLimitSwitchSource = LimitSwitchSource.Deactivated ;
             return WINCH_SRX_CONFIG;
         }
     }
