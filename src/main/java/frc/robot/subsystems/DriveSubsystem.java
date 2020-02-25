@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.DriveTrainConstants;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -21,10 +21,10 @@ public class DriveSubsystem extends SubsystemBase {
 	 * Motor Diagram |1 3| |2 4|
 	 */
 
-	private WPI_TalonSRX rightTalon1;
+	private WPI_TalonSRX rightTalon;
 	private WPI_VictorSPX rightVictor2;
 	private SpeedControllerGroup m_rightMotors;
-	private WPI_TalonSRX leftTalon3;
+	private WPI_TalonSRX leftTalon;
 	private WPI_VictorSPX leftVictor4;
 	private SpeedControllerGroup m_leftMotors;
 	private DifferentialDrive m_drive;
@@ -47,18 +47,20 @@ public class DriveSubsystem extends SubsystemBase {
 	 */
 	public DriveSubsystem() {
 
-		rightTalon1 = new WPI_TalonSRX(Constants.DriveTrainConstants.RIGHT_TALON);
+		rightTalon = new WPI_TalonSRX(DriveTrainConstants.RIGHT_TALON);
 
-		rightVictor2 = new WPI_VictorSPX(Constants.DriveTrainConstants.RIGHT_VICTOR);
+		rightVictor2 = new WPI_VictorSPX(DriveTrainConstants.RIGHT_VICTOR);
+		rightVictor2.follow(rightTalon);
 
-		m_rightMotors = new SpeedControllerGroup(rightTalon1, rightVictor2);
+		m_rightMotors = new SpeedControllerGroup(rightTalon, rightVictor2);
 		addChild("Speed Controller Group 2", m_rightMotors);
 
-		leftTalon3 = new WPI_TalonSRX(Constants.DriveTrainConstants.LEFT_TALON);
+		leftTalon = new WPI_TalonSRX(DriveTrainConstants.LEFT_TALON);
 
-		leftVictor4 = new WPI_VictorSPX(Constants.DriveTrainConstants.LEFT_VICTOR);
+		leftVictor4 = new WPI_VictorSPX(DriveTrainConstants.LEFT_VICTOR);
+		leftVictor4.follow(leftTalon);
 
-		m_leftMotors = new SpeedControllerGroup(leftTalon3, leftVictor4);
+		m_leftMotors = new SpeedControllerGroup(leftTalon, leftVictor4);
 		addChild("Speed Controller Group 1", m_leftMotors);
 
 		m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
@@ -69,6 +71,12 @@ public class DriveSubsystem extends SubsystemBase {
 
 		m_rightMotors.setInverted(true);
 		m_leftMotors.setInverted(true);
+
+		rightTalon.configAllSettings(DriveTrainConstants.getConfig());
+		rightTalon.setSelectedSensorPosition(0);
+
+		leftTalon.configAllSettings(DriveTrainConstants.getConfig());
+		leftTalon.setSelectedSensorPosition(0);
 	}
 
 	/**
@@ -82,8 +90,8 @@ public class DriveSubsystem extends SubsystemBase {
 	}
 
 	public void resetEncoders() {
-		rightTalon1.setSelectedSensorPosition(0);
-		leftTalon3.setSelectedSensorPosition(0);
+		rightTalon.setSelectedSensorPosition(0);
+		leftTalon.setSelectedSensorPosition(0);
 	}
 
 	public DifferentialDrive getDDrive() {
@@ -96,7 +104,7 @@ public class DriveSubsystem extends SubsystemBase {
 	 * @return the left drive WPI_TalonSRX
 	 */
 	public WPI_TalonSRX getLeft() {
-		return rightTalon1;
+		return rightTalon;
 	}
 
 	/**
@@ -105,7 +113,7 @@ public class DriveSubsystem extends SubsystemBase {
 	 * @return the right drive WPI_TalonSRX
 	 */
 	public WPI_TalonSRX getRightr() {
-		return leftTalon3;
+		return leftTalon;
 	}
 
 	/**

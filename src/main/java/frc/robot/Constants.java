@@ -24,7 +24,23 @@ public final class Constants {
         public static final int RIGHT_VICTOR = 2;
         public static final int LEFT_TALON = 3;
         public static final int LEFT_VICTOR = 4;
-        public static final double WHEEL_CIRCUMFERENCE_INCHES = Math.PI * 6; // TODO Check
+        public static final double WHEEL_CIRCUMFERENCE_INCHES = Math.PI * 6.0; // TODO Check
+
+        private static final TalonSRXConfiguration TELE_SRX_CONFIG = new TalonSRXConfiguration();
+
+        public static TalonSRXConfiguration getConfig() {
+            // TODO tune these values
+            TELE_SRX_CONFIG.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute;
+            TELE_SRX_CONFIG.neutralDeadband = 0.005;
+            TELE_SRX_CONFIG.slot0.kP = 1.5;
+            TELE_SRX_CONFIG.slot0.kI = 0.0;
+            TELE_SRX_CONFIG.slot0.kD = 0.0;
+            TELE_SRX_CONFIG.slot0.integralZone = 400;
+            TELE_SRX_CONFIG.slot0.closedLoopPeakOutput = 0.75;
+            TELE_SRX_CONFIG.closedloopRamp = .5;
+            TELE_SRX_CONFIG.openloopRamp = .5;
+            return TELE_SRX_CONFIG;
+        }
     }
 
     /**
