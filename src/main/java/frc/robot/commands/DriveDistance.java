@@ -39,7 +39,6 @@ public class DriveDistance extends CommandBase {
 
     @Override
     public void initialize() {
-        // m_drive.resetEncoders();
         drive.resetEncoders();
         drive.arcadeDrive(speed, 0);
     }
@@ -49,7 +48,6 @@ public class DriveDistance extends CommandBase {
     public void execute() {
         drive.getLeft().set(ControlMode.Position, _pos);
         drive.getRightr().set(ControlMode.Position, _pos);
-        // drive.getDDrive().set(ControlMode.Position, _pos);
     }
 
     @Override
