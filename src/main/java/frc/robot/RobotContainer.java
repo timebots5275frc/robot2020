@@ -65,41 +65,40 @@ public class RobotContainer {
      * RobotContainer
      */
     public RobotContainer() {
-
         // Configure the button bindings
 
         // Intake //
-                  intake = new Intake();
-            deployIntake = new IntakeSolenoidSet(intake, true);
-           retractIntake = new IntakeSolenoidSet(intake, false);
-             startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
-              stopIntake = new IntakeSpeedSet(intake, 0);
+        intake = new Intake();
+        deployIntake = new IntakeSolenoidSet(intake, true);
+        retractIntake = new IntakeSolenoidSet(intake, false);
+        startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
+        stopIntake = new IntakeSpeedSet(intake, 0);
         intake.setDefaultCommand(stopIntake);
         // //
 
         // Hopper //
-                  hopper = new Hopper();
-           hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
-              hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
-           hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
+        hopper = new Hopper();
+        hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
+        hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
+        hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
         hopper.setDefaultCommand(hopperStop);
         // //
 
         // Telescope //
-               telescope = new Telescope();
+        telescope = new Telescope();
         setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
         // //
 
         // Winch //
-                   winch = new Winch();
-            setWinchZero = new WinchSet(winch, 0);
-         setWinchTenInch = new WinchSet(winch, 10.0);
+        winch = new Winch();
+        setWinchZero = new WinchSet(winch, 0);
+        setWinchTenInch = new WinchSet(winch, 10.0);
         // //
 
         // Spitter //
-                 spitter = new Spitter();
-              spitterOff = new SpitterSet(spitter, 0);
-               spitterOn = new SpitterSet(spitter, 1);
+        spitter = new Spitter();
+        spitterOff = new SpitterSet(spitter, 0);
+        spitterOn = new SpitterSet(spitter, 1);
         // //
 
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
