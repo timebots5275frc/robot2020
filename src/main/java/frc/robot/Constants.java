@@ -24,6 +24,7 @@ public final class Constants {
         public static final int RIGHT_VICTOR = 2;
         public static final int LEFT_TALON = 3;
         public static final int LEFT_VICTOR = 4;
+        public static final double WHEEL_CIRCUMFERENCE_INCHES = Math.PI * 6; // TODO Check
     }
 
     /**
@@ -88,8 +89,8 @@ public final class Constants {
             WINCH_SRX_CONFIG.slot0.closedLoopPeakOutput = 1.0;
             WINCH_SRX_CONFIG.closedloopRamp = .5;
             WINCH_SRX_CONFIG.openloopRamp = .5;
-            WINCH_SRX_CONFIG.forwardLimitSwitchSource = LimitSwitchSource.Deactivated ;
-            WINCH_SRX_CONFIG.reverseLimitSwitchSource = LimitSwitchSource.Deactivated ;
+            WINCH_SRX_CONFIG.forwardLimitSwitchSource = LimitSwitchSource.Deactivated;
+            WINCH_SRX_CONFIG.reverseLimitSwitchSource = LimitSwitchSource.Deactivated;
             return WINCH_SRX_CONFIG;
         }
     }
