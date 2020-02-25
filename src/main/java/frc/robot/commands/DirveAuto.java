@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.DriveSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -16,20 +17,17 @@ public class DirveAuto extends SequentialCommandGroup {
   /**
    * Creates a new DirveAuto.
    */
-  public DirveAuto() {
+  public DirveAuto(DriveSubsystem drive) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
 
     addCommands(
         // Drive forward the specified distance
-        new DriveDistance(AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, drive),
-
-        // Release the hatch
-        // new ReleaseHatch(hatch),
+        new DriveDistance(10, 0.3, drive),
 
         // Drive backward the specified distance
-        new DriveDistance(AutoConstants.kAutoBackupDistanceInches, -AutoConstants.kAutoDriveSpeed, drive));
+        new DriveDistance(10, -0.3, drive));
 
-    super();
+    // super();
   }
 }
