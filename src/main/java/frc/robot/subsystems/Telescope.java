@@ -39,6 +39,10 @@ public class Telescope extends SubsystemBase {
 		_talon.configAllSettings(TelescopeConstants.getConfig());
 		_talon.setInverted(InvertType.InvertMotorOutput);
 		_talon.setSelectedSensorPosition(0);
+
+		_talon.configPeakCurrentLimit(30); // Peak Current 25% motor Max
+		_talon.configPeakCurrentDuration(150);
+		_talon.configContinuousCurrentLimit(20); // Stall current 15% motor Max
 	}
 
 	@Override

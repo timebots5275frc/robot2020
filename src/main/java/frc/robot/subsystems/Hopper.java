@@ -35,6 +35,8 @@ public class Hopper extends SubsystemBase {
         // ramping during closed-loop control
         hopperVictorTop.configClosedloopRamp(Constants.HopperConstants.VICTOR_RAMPING);
         hopperVictorBottom.configClosedloopRamp(Constants.HopperConstants.VICTOR_RAMPING);
+
+        // hopperVictorTop.
     }
 
     /**

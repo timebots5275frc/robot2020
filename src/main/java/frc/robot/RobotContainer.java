@@ -77,7 +77,8 @@ public class RobotContainer {
         // intake = new Intake();
         // deployIntake = new IntakeSolenoidSet(intake, true);
         // retractIntake = new IntakeSolenoidSet(intake, false);
-        // startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
+        // startIntake = new IntakeSpeedSet(intake,
+        // Constants.IntakeConstants.INTAKE_SPEED);
         // stopIntake = new IntakeSpeedSet(intake, 0);
         // intake.setDefaultCommand(stopIntake);
         // //
@@ -93,7 +94,7 @@ public class RobotContainer {
         // Telescope //
         telescope = new Telescope();
         setTelescopeZero = new TelescopeSeek(telescope, 0); // 0in
-        setTelescopeHigh = new TelescopeSeek(telescope, 6*4096);
+        setTelescopeHigh = new TelescopeSeek(telescope, 6 * 4096);
         // //
 
         // Winch //
@@ -102,11 +103,10 @@ public class RobotContainer {
         setWinchTenInch = new WinchSet(winch, 10.0);
         // //
 
-
         // EXTEND/RETRACT
         extendCommand = new ExtendClimbSystem(telescope, winch, 40960);
         retractCommand = new ExtendClimbSystem(telescope, winch, 0);
-        halfwayCommand = new ExtendClimbSystem(telescope, winch, 40960/2);
+        halfwayCommand = new ExtendClimbSystem(telescope, winch, 40960 / 2);
 
         // // Spitter //
         // spitter = new Spitter();
@@ -117,6 +117,7 @@ public class RobotContainer {
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
         configureButtonBindings();
+
         configureSubsystemCommands();
     }
 
@@ -125,7 +126,7 @@ public class RobotContainer {
         new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
         new JoystickButton(driveStick, 3).whenActive(hopperStop);
         new JoystickButton(driveStick, 4).whenActive(retractCommand);
-        new JoystickButton(driveStick, 1).whenActive(halfwayCommand); 
+        new JoystickButton(driveStick, 1).whenActive(halfwayCommand);
         new JoystickButton(driveStick, 6).whenActive(extendCommand);
     }
 

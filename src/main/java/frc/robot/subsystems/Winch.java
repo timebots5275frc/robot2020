@@ -33,6 +33,10 @@ public class Winch extends SubsystemBase {
 		winchTalon10.setNeutralMode(NeutralMode.Brake);
 		winchVictor11.setNeutralMode(NeutralMode.Brake);
 		zeroMotor();
+
+		winchTalon10.configPeakCurrentLimit(30); // Peak Current 25% motor Max
+		winchTalon10.configPeakCurrentDuration(150);
+		winchTalon10.configContinuousCurrentLimit(20); // Stall current 15% motor Max
 	}
 
 	@Override
