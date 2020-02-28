@@ -6,8 +6,8 @@ import frc.robot.Constants.WinchConstants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
@@ -19,6 +19,8 @@ public class Winch extends SubsystemBase {
 	private WPI_TalonSRX winchTalon10;
 	private WPI_VictorSPX winchVictor11;
 	private DigitalInput limitSwitch2;
+
+	private Solenoid solenoidRatchet;
 
 	public Winch() {
 		winchTalon10 = new WPI_TalonSRX(WinchConstants.WINCH_TALON_CHANNEL);
@@ -34,12 +36,18 @@ public class Winch extends SubsystemBase {
 		winchTalon10.setNeutralMode(NeutralMode.Brake);
 		winchVictor11.setNeutralMode(NeutralMode.Brake);
 		zeroMotor();
+
+		solenoidRatchet = new Solenoid(WinchConstants.PCM_CHANNEL, WinchConstants.RATCHET_CHANNEL);
+		addChild("solenoidRatchet", solenoidRatchet);
 	}
 
 	@Override
 	public void periodic() {
 		// Put code here to be run every loop
+	}
 
+	public Solenoid getSolenoid() {
+		return solenoidRatchet;
 	}
 
 	public double rotationToPull(double rotations) {

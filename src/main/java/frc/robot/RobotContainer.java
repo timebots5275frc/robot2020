@@ -21,6 +21,7 @@ import frc.robot.commands.HopperSet;
 import frc.robot.commands.IntakeSolenoidSet;
 import frc.robot.commands.IntakeSpeedSet;
 import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.RatchetSet;
 import frc.robot.commands.SpitterSet;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
@@ -56,6 +57,8 @@ public class RobotContainer {
     public static Winch winch;
     public static Command setWinchZero;
     public static Command setWinchTenInch;
+    public static Command setRatchetLock;
+    public static Command setRatchetUnLock;
 
     public static Intake intake;
     public static Command deployIntake;
@@ -77,7 +80,8 @@ public class RobotContainer {
         // intake = new Intake();
         // deployIntake = new IntakeSolenoidSet(intake, true);
         // retractIntake = new IntakeSolenoidSet(intake, false);
-        // startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
+        // startIntake = new IntakeSpeedSet(intake,
+        // Constants.IntakeConstants.INTAKE_SPEED);
         // stopIntake = new IntakeSpeedSet(intake, 0);
         // intake.setDefaultCommand(stopIntake);
         // //
@@ -93,20 +97,21 @@ public class RobotContainer {
         // Telescope //
         telescope = new Telescope();
         setTelescopeZero = new TelescopeSeek(telescope, 0); // 0in
-        setTelescopeHigh = new TelescopeSeek(telescope, 6*4096);
+        setTelescopeHigh = new TelescopeSeek(telescope, 6 * 4096);
         // //
 
         // Winch //
         winch = new Winch();
         setWinchZero = new WinchSet(winch, 0);
         setWinchTenInch = new WinchSet(winch, 10.0);
+        setRatchetLock = new RatchetSet(winch, true);
+        setRatchetUnLock = new RatchetSet(winch, false);
         // //
-
 
         // EXTEND/RETRACT
         extendCommand = new ExtendClimbSystem(telescope, winch, 40960);
         retractCommand = new ExtendClimbSystem(telescope, winch, 0);
-        halfwayCommand = new ExtendClimbSystem(telescope, winch, 40960/2);
+        halfwayCommand = new ExtendClimbSystem(telescope, winch, 40960 / 2);
 
         // // Spitter //
         // spitter = new Spitter();
@@ -125,7 +130,7 @@ public class RobotContainer {
         new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
         new JoystickButton(driveStick, 3).whenActive(hopperStop);
         new JoystickButton(driveStick, 4).whenActive(retractCommand);
-        new JoystickButton(driveStick, 1).whenActive(halfwayCommand); 
+        new JoystickButton(driveStick, 1).whenActive(halfwayCommand);
         new JoystickButton(driveStick, 6).whenActive(extendCommand);
     }
 

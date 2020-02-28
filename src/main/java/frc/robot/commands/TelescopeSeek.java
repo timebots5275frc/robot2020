@@ -10,7 +10,6 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.Constants.TelescopeConstants;
 import frc.robot.subsystems.Telescope;
 
@@ -25,7 +24,7 @@ public class TelescopeSeek extends CommandBase {
 	 * @param pos the encoder position the command will seek to
 	 */
 	public TelescopeSeek(Telescope tele, int pos) {
-		
+
 		addRequirements(tele);
 		_pos = pos;
 		_tele = tele;
@@ -58,7 +57,6 @@ public class TelescopeSeek extends CommandBase {
 			_tele.getMotor().set(ControlMode.Position, _pos);
 		} else
 			_tele.getMotor().set(ControlMode.PercentOutput, 0.0);
-
 	}
 
 	// Called once the command ends or is interrupted.

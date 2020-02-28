@@ -88,10 +88,16 @@ public final class Constants {
             WINCH_SRX_CONFIG.slot0.closedLoopPeakOutput = 1.0;
             WINCH_SRX_CONFIG.closedloopRamp = .5;
             WINCH_SRX_CONFIG.openloopRamp = .5;
-            WINCH_SRX_CONFIG.forwardLimitSwitchSource = LimitSwitchSource.Deactivated ;
-            WINCH_SRX_CONFIG.reverseLimitSwitchSource = LimitSwitchSource.Deactivated ;
+            WINCH_SRX_CONFIG.forwardLimitSwitchSource = LimitSwitchSource.Deactivated;
+            WINCH_SRX_CONFIG.reverseLimitSwitchSource = LimitSwitchSource.Deactivated;
             return WINCH_SRX_CONFIG;
         }
+
+        /**
+         * s Ratchet
+         */
+        public static final int PCM_CHANNEL = 0;
+        public static final int RATCHET_CHANNEL = 3;
     }
 
     /**
