@@ -23,6 +23,7 @@ import frc.robot.commands.IntakeSpeedSet;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.RatchetSet;
 import frc.robot.commands.SpitterSet;
+import frc.robot.commands.SpitterSolenoidSet;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
 
@@ -49,6 +50,8 @@ public class RobotContainer {
     public static Spitter spitter;
     public Command spitterOff;
     public Command spitterOn;
+    public Command spitterDeploy;
+    public Command spitterRetract;
 
     public static Telescope telescope;
     public static Command setTelescopeZero;
@@ -77,19 +80,20 @@ public class RobotContainer {
         // Configure the button bindings
 
         // Intake //
-        // intake = new Intake();
-        // deployIntake = new IntakeSolenoidSet(intake, true);
-        // retractIntake = new IntakeSolenoidSet(intake, false);
-        // startIntake = new IntakeSpeedSet(intake,
-        // Constants.IntakeConstants.INTAKE_SPEED);
-        // stopIntake = new IntakeSpeedSet(intake, 0);
-        // intake.setDefaultCommand(stopIntake);
+        intake = new Intake();
+        deployIntake = new IntakeSolenoidSet(intake, true);
+        retractIntake = new IntakeSolenoidSet(intake, false);
+        startIntake = new IntakeSpeedSet(intake, Constants.IntakeConstants.INTAKE_SPEED);
+        stopIntake = new IntakeSpeedSet(intake, 0);
+        intake.setDefaultCommand(stopIntake);
         // //
 
         // Spitter //
         spitter = new Spitter();
         spitterOff = new SpitterSet(spitter, 0);
         spitterOn = new SpitterSet(spitter, 1);
+        spitterDeploy = new SpitterSolenoidSet(spitter, true);
+        spitterRetract = new SpitterSolenoidSet(spitter, false);
         // //
 
         // Hopper //
@@ -135,6 +139,8 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
         new JoystickButton(driveStick, 3).whenActive(hopperStop);
+        new JoystickButton(driveStick, 6).whenActive(spitterDeploy);
+        new JoystickButton(driveStick, 4).whenActive(spitterRetract);
 
         // new JoystickButton(driveStick, 4).whenActive(retractCommand);
         // new JoystickButton(driveStick, 1).whenActive(halfwayCommand);

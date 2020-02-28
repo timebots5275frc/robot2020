@@ -7,18 +7,20 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Spitter;
 
 public class SpitterSolenoidSet extends CommandBase {
 
   private boolean deploy;
-  private Intake subsystem;
+  private Spitter subsystem;
 
   /**
    * Creates a new SpitterSolenoidSet.
    */
-  public SpitterSolenoidSet(Intake subsystem, boolean deploy) {
+  public SpitterSolenoidSet(Spitter subsystem, boolean deploy) {
     this.subsystem = subsystem;
     this.deploy = deploy;
     addRequirements(subsystem);
@@ -33,7 +35,7 @@ public class SpitterSolenoidSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getSolenoid().set(deploy);
+    subsystem.getTrapDoor().set(Value.kForward);
   }
 
   // Called once the command ends or is interrupted.
