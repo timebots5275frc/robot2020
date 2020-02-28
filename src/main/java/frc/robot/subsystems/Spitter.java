@@ -10,20 +10,21 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Spitter extends SubsystemBase {
-	private Solenoid solenoidTrapDoor;
+	private DoubleSolenoid solenoidTrapDoor;
 	private WPI_VictorSPX spitterVictor;
 
 	public Spitter() {
-		solenoidTrapDoor = new Solenoid(Constants.SpitterConstants.SOLENOID_CAN, 1);
+		solenoidTrapDoor = new DoubleSolenoid(Constants.SpitterConstants.SOLENOID_CAN, 1);
 		addChild("solenoidTrapDoor", solenoidTrapDoor);
 		spitterVictor = new WPI_VictorSPX(Constants.SpitterConstants.VICTOR_CAN);
 	}
 
-	public Solenoid getTrapDoor() {
+	public DoubleSolenoid getTrapDoor() {
 		return solenoidTrapDoor;
 	}
 

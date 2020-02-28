@@ -47,8 +47,8 @@ public class RobotContainer {
     public Command hopperReverse;
 
     public static Spitter spitter;
-    public static Command spitterOff;
-    public static Command spitterOn;
+    public Command spitterOff;
+    public Command spitterOn;
 
     public static Telescope telescope;
     public static Command setTelescopeZero;
@@ -84,6 +84,12 @@ public class RobotContainer {
         // Constants.IntakeConstants.INTAKE_SPEED);
         // stopIntake = new IntakeSpeedSet(intake, 0);
         // intake.setDefaultCommand(stopIntake);
+        // //
+
+        // Spitter //
+        spitter = new Spitter();
+        spitterOff = new SpitterSet(spitter, 0);
+        spitterOn = new SpitterSet(spitter, 1);
         // //
 
         // Hopper //
@@ -129,9 +135,10 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
         new JoystickButton(driveStick, 3).whenActive(hopperStop);
-        new JoystickButton(driveStick, 4).whenActive(retractCommand);
-        new JoystickButton(driveStick, 1).whenActive(halfwayCommand);
-        new JoystickButton(driveStick, 6).whenActive(extendCommand);
+
+        // new JoystickButton(driveStick, 4).whenActive(retractCommand);
+        // new JoystickButton(driveStick, 1).whenActive(halfwayCommand);
+        // new JoystickButton(driveStick, 6).whenActive(extendCommand);
     }
 
     private void configureSubsystemCommands() {

@@ -43,12 +43,12 @@ public class SpitterSet extends CommandBase {
   public void execute() {
 
     if (state == 0) {
-      subsystem.getTrapDoor().set(true);
+      // subsystem.getTrapDoor().set(true);
       subsystem.getVictor().set(ControlMode.PercentOutput, 0);
     }
 
     if (state == 1) {
-      subsystem.getTrapDoor().set(false);
+      // subsystem.getTrapDoor().set(false);
       subsystem.getVictor().set(ControlMode.PercentOutput, 0.3);
     }
   }

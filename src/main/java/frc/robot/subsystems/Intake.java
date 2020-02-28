@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase {
    * Creates a new Intake.
    */
   public Intake() {
-    solenoid = new Solenoid(0, 0);
+    solenoid = new Solenoid(1, 0);
     addChild("solenoid", solenoid);
     intakeVictor = new WPI_VictorSPX(Constants.IntakeConstants.INTAKE_VICTOR_CHANNEL);
   }
