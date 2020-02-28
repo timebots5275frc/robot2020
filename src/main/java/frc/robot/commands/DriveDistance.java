@@ -47,7 +47,7 @@ public class DriveDistance extends CommandBase {
     @Override
     public void execute() {
         drive.getLeft().set(ControlMode.Position, _pos);
-        drive.getRightr().set(ControlMode.Position, _pos);
+        drive.getRight().set(ControlMode.Position, _pos);
     }
 
     @Override

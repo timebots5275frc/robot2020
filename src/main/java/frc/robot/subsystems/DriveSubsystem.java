@@ -104,7 +104,7 @@ public class DriveSubsystem extends SubsystemBase {
 	 * @return the left drive WPI_TalonSRX
 	 */
 	public WPI_TalonSRX getLeft() {
-		return rightTalon;
+		return leftTalon;
 	}
 
 	/**
@@ -112,8 +112,8 @@ public class DriveSubsystem extends SubsystemBase {
 	 *
 	 * @return the right drive WPI_TalonSRX
 	 */
-	public WPI_TalonSRX getRightr() {
-		return leftTalon;
+	public WPI_TalonSRX getRight() {
+		return rightTalon;
 	}
 
 	/**

@@ -29,9 +29,9 @@ public class DriveRotation extends CommandBase {
      */
     public DriveRotation(double degrees, double speed, DriveSubsystem drive) {
         addRequirements(drive);
+        this.drive = drive;
         this.degrees = degrees;
         this.speed = speed;
-        this.drive = drive;
 
         degrees = degrees / DriveTrainConstants.WHEEL_CIRCUMFERENCE_INCHES; // pull / circumference to yield rotations
         degrees = degrees * 4096; // rotations to encoder counts
@@ -42,14 +42,14 @@ public class DriveRotation extends CommandBase {
     @Override
     public void initialize() {
         drive.resetEncoders();
-        drive.arcadeDrive(speed, 0);
+        drive.arcadeDrive(0, 0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
         drive.getLeft().set(ControlMode.Position, _pos);
-        drive.getRightr().set(ControlMode.Position, _pos);
+        drive.getRight().set(ControlMode.Position, -_pos);
     }
 
     // Called once the command ends or is interrupted.
