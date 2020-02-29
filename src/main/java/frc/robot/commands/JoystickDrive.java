@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class JoystickDrive extends CommandBase {
-    
+
     private final DriveSubsystem m_drive;
     private final Joystick joystick;
 
@@ -48,9 +48,9 @@ public class JoystickDrive extends CommandBase {
         double m_forward = joystick.getRawAxis(1) * throt * -1;
         double m_rotation = joystick.getRawAxis(2) * (throt / 2) * -1;
 
-        System.out.println("throt = " + throt);
-        System.out.println("m_forward = " + m_forward);
-        System.out.println("m_rotation = " + m_rotation);
+        // System.out.println("throt = " + throt);
+        // System.out.println("m_forward = " + m_forward);
+        // System.out.println("m_rotation = " + m_rotation);
 
         m_drive.arcadeDrive(m_forward, m_rotation);
     }

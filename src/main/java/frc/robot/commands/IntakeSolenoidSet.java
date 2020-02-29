@@ -12,7 +12,6 @@ import frc.robot.subsystems.Intake;
 
 public class IntakeSolenoidSet extends CommandBase {
 
-  
   private boolean deploy;
   private Intake subsystem;
 

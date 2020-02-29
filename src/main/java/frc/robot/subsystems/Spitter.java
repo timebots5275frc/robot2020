@@ -19,8 +19,7 @@ public class Spitter extends SubsystemBase {
 	private WPI_VictorSPX spitterVictor;
 
 	public Spitter() {
-		// solenoidTrapDoor = new DoubleSolenoid(1, 6); //
-		// Constants.SpitterConstants.SOLENOID_CAN
+		solenoidTrapDoor = new DoubleSolenoid(1, 1, 6);
 		addChild("solenoidTrapDoor", solenoidTrapDoor);
 
 		spitterVictor = new WPI_VictorSPX(Constants.SpitterConstants.VICTOR_CAN);

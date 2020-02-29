@@ -30,12 +30,14 @@ public class SpitterSolenoidSet extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    System.out.println("givin her three blond ones");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getTrapDoor().set(Value.kForward);
+    subsystem.getTrapDoor().set(deploy ? Value.kForward : Value.kReverse);
   }
 
   // Called once the command ends or is interrupted.

@@ -68,8 +68,6 @@ public final class Constants {
     public static final class WinchConstants {
         public static final int WINCH_VICTOR_CHANNEL = 11;
         public static final int WINCH_TALON_CHANNEL = 10;
-        public static final int SOLENOID_CHANNEL = 2;
-        public static final int SOLENOID_MODULE = 0;
         public static final int WINCH_LIMIT_CHANNEL = 2;
         public static final TalonSRXConfiguration WINCH_SRX_CONFIG = new TalonSRXConfiguration();
         /**
@@ -96,7 +94,7 @@ public final class Constants {
         /**
          * s Ratchet
          */
-        public static final int PCM_CHANNEL = 0;
+        public static final int PCM_CHANNEL = 1;
         public static final int RATCHET_CHANNEL = 3;
     }
 
