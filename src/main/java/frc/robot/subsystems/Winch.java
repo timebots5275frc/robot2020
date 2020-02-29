@@ -21,7 +21,7 @@ public class Winch extends SubsystemBase {
 	private WPI_VictorSPX winchVictor11;
 	private DigitalInput limitSwitch2;
 
-	private Solenoid solenoidRatchet;
+	private DoubleSolenoid solenoidRatchet;
 
 	public Winch() {
 		winchTalon10 = new WPI_TalonSRX(WinchConstants.WINCH_TALON_CHANNEL);
@@ -47,7 +47,7 @@ public class Winch extends SubsystemBase {
 		// Put code here to be run every loop
 	}
 
-	public Solenoid getSolenoid() {
+	public DoubleSolenoid getSolenoid() {
 		return solenoidRatchet;
 	}
 

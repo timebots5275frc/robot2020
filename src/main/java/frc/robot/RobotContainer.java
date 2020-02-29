@@ -21,6 +21,7 @@ import frc.robot.commands.HopperSet;
 import frc.robot.commands.IntakeSolenoidSet;
 import frc.robot.commands.IntakeSpeedSet;
 import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.RatchetSender;
 import frc.robot.commands.RatchetSet;
 import frc.robot.commands.SpitterSet;
 import frc.robot.commands.SpitterSolenoidSet;
@@ -73,6 +74,8 @@ public class RobotContainer {
     public static Command retractCommand;
     public static Command halfwayCommand;
 
+    public static Command rsend;
+
     /**
      * RobotContainer
      */
@@ -87,6 +90,8 @@ public class RobotContainer {
         stopIntake = new IntakeSpeedSet(intake, 0);
         intake.setDefaultCommand(stopIntake);
         // //
+
+        rsend = new RatchetSender(winch, 1.0);
 
         // Spitter //
         spitter = new Spitter();
