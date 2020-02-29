@@ -125,12 +125,6 @@ public class RobotContainer {
         halfwayCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION / 2);
         quarterRetractCommand = new ExtendClimbSystem(telescope, winch, (FULL_EXTENSION / 4) * 3);
 
-        // Spitter //
-        spitter = new Spitter();
-        spitterOff = new SpitterSet(spitter, 0);
-        spitterOn = new SpitterSet(spitter, 1);
-        //
-
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
         configureButtonBindings();
