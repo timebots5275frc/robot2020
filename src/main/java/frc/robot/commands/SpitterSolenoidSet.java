@@ -30,8 +30,6 @@ public class SpitterSolenoidSet extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    System.out.println("givin her three blond ones");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

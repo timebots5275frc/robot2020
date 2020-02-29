@@ -6,6 +6,7 @@ import frc.robot.Constants.WinchConstants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -37,7 +38,7 @@ public class Winch extends SubsystemBase {
 		winchVictor11.setNeutralMode(NeutralMode.Brake);
 		zeroMotor();
 
-		solenoidRatchet = new Solenoid(WinchConstants.PCM_CHANNEL, WinchConstants.RATCHET_CHANNEL);
+		solenoidRatchet = new DoubleSolenoid(1, 7, 0);
 		addChild("solenoidRatchet", solenoidRatchet);
 	}
 
