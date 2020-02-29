@@ -22,11 +22,11 @@ import frc.robot.commands.IntakeSolenoidSet;
 import frc.robot.commands.IntakeSpeedSet;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.RatchetSender;
-import frc.robot.commands.RatchetSet;
 import frc.robot.commands.SpitterSet;
 import frc.robot.commands.SpitterSolenoidSet;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
+import static frc.robot.Constants.TelescopeConstants.FULL_EXTENSION;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -73,6 +73,8 @@ public class RobotContainer {
     public static Command extendCommand;
     public static Command retractCommand;
     public static Command halfwayCommand;
+    public static Command extendLowCommand;
+    public static Command quarterRetractCommand;
 
     public static Command rsend;
 
@@ -111,28 +113,23 @@ public class RobotContainer {
 
         // Telescope //
         telescope = new Telescope();
-        setTelescopeZero = new TelescopeSeek(telescope, 0); // 0in
-        setTelescopeHigh = new TelescopeSeek(telescope, 6 * 4096);
-        // //
 
         // Winch //
         winch = new Winch();
-        setWinchZero = new WinchSet(winch, 0);
-        setWinchTenInch = new WinchSet(winch, 10.0);
-        setRatchetLock = new RatchetSet(winch, true);
-        setRatchetUnLock = new RatchetSet(winch, false);
         // //
 
         // EXTEND/RETRACT
-        extendCommand = new ExtendClimbSystem(telescope, winch, 40960);
+        extendCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION);
+        extendLowCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION - (4096 * 2));
         retractCommand = new ExtendClimbSystem(telescope, winch, 0);
-        halfwayCommand = new ExtendClimbSystem(telescope, winch, 40960 / 2);
+        halfwayCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION / 2);
+        quarterRetractCommand = new ExtendClimbSystem(telescope, winch, (FULL_EXTENSION / 4) * 3);
 
-        // // Spitter //
-        // spitter = new Spitter();
-        // spitterOff = new SpitterSet(spitter, 0);
-        // spitterOn = new SpitterSet(spitter, 1);
-        // //
+        // Spitter //
+        spitter = new Spitter();
+        spitterOff = new SpitterSet(spitter, 0);
+        spitterOn = new SpitterSet(spitter, 1);
+        //
 
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
@@ -142,14 +139,18 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
-        new JoystickButton(driveStick, 3).whenActive(hopperStop);
-        new JoystickButton(driveStick, 6).whenActive(spitterDeploy);
+        new JoystickButton(driveStick, 1).whenActive(spitterOn); // only when held
+        new JoystickButton(driveStick, 2).whenActive(startIntake);
+        new JoystickButton(driveStick, 3).whenActive(retractIntake);
         new JoystickButton(driveStick, 4).whenActive(spitterRetract);
+        new JoystickButton(driveStick, 5).whenActive(deployIntake);
+        new JoystickButton(driveStick, 6).whenActive(spitterDeploy);
+        new JoystickButton(driveStick, 7).whenActive(retractCommand);
+        new JoystickButton(driveStick, 9).whenActive(halfwayCommand); // CLIMB RETRACT HALFWAY
+        new JoystickButton(driveStick, 10).whenActive(quarterRetractCommand); // CLIMB RETRACT 1/4 UP
+        new JoystickButton(driveStick, 11).whenActive(extendCommand); // CLIMB EXTEND HIGH
+        new JoystickButton(driveStick, 12).whenActive(extendLowCommand); // CLIMB EXTEND LOW
 
-        // new JoystickButton(driveStick, 4).whenActive(retractCommand);
-        // new JoystickButton(driveStick, 1).whenActive(halfwayCommand);
-        // new JoystickButton(driveStick, 6).whenActive(extendCommand);
     }
 
     private void configureSubsystemCommands() {

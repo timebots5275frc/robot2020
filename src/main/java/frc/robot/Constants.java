@@ -38,6 +38,8 @@ public final class Constants {
         public static final boolean DOWN_SWITCH_INVERTED = false;
         private static final TalonSRXConfiguration TELE_SRX_CONFIG = new TalonSRXConfiguration();
 
+        public static final int FULL_EXTENSION = 10 * 4096;
+
         public static final double TELE_DRUM_CIRCUMFERENCE = Math.PI * .75; // pi * .75" dia
 
         public static TalonSRXConfiguration getConfig() {
