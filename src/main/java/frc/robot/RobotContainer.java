@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj.Joystick;
 // import edu.wpi.first.wpilibj.buttons.JosystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.WinchSet;
+import frc.robot.commands.AutoDriveForward;
 import frc.robot.commands.ExtendClimbSystem;
 import frc.robot.commands.HopperSet;
 import frc.robot.commands.IntakeHopperGroup;
@@ -79,6 +81,8 @@ public class RobotContainer {
 
     public static Command rsend;
 
+    public static Command autoDriveForwards;
+
     // Command Groups
     public static IntakeHopperGroup intakeHopperCommandGroup;
 
@@ -132,6 +136,11 @@ public class RobotContainer {
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
 
         intakeHopperCommandGroup = new IntakeHopperGroup();
+
+        autoDriveForwards = new AutoDriveForward(driveTrainSubsystem, 1.0, .7);
+        autoChooser.addOption("Drive Forwards - Auton", autoDriveForwards);
+        autoChooser.setDefaultOption("DO NOTHING", new CommandBase() {});
+
 
         configureButtonBindings();
         configureSubsystemCommands();
