@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.WinchSet;
 import frc.robot.commands.ExtendClimbSystem;
 import frc.robot.commands.HopperSet;
+import frc.robot.commands.IntakeHopperGroup;
 import frc.robot.commands.IntakeSolenoidSet;
 import frc.robot.commands.IntakeSpeedSet;
 import frc.robot.commands.JoystickDrive;
@@ -44,15 +45,15 @@ public class RobotContainer {
     private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
     public static Hopper hopper;
-    public Command hopperAdvance;
-    public Command hopperStop;
-    public Command hopperReverse;
+    public static Command hopperAdvance;
+    public static Command hopperStop;
+    public static Command hopperReverse;
 
     public static Spitter spitter;
-    public Command spitterOff;
-    public Command spitterOn;
-    public Command spitterDeploy;
-    public Command spitterRetract;
+    public static Command spitterOff;
+    public static Command spitterOn;
+    public static Command spitterDeploy;
+    public static Command spitterRetract;
 
     public static Telescope telescope;
     public static Command setTelescopeZero;
@@ -74,9 +75,12 @@ public class RobotContainer {
     public static Command retractCommand;
     public static Command halfwayCommand;
     public static Command extendLowCommand;
-    public static Command quarterRetractCommand;
+    public static Command negRetractCommand;
 
     public static Command rsend;
+
+    // Command Groups
+    public static IntakeHopperGroup intakeHopperCommandGroup;
 
     /**
      * RobotContainer
@@ -93,12 +97,10 @@ public class RobotContainer {
         intake.setDefaultCommand(stopIntake);
         // //
 
-        rsend = new RatchetSender(winch, 1.0);
-
         // Spitter //
         spitter = new Spitter();
-        spitterOff = new SpitterSet(spitter, 0);
-        spitterOn = new SpitterSet(spitter, 1);
+        spitterOff = new SpitterSet(spitter, 0.0);
+        spitterOn = new SpitterSet(spitter, Constants.SpitterConstants.MAX_OUTPUT);
         spitterDeploy = new SpitterSolenoidSet(spitter, true);
         spitterRetract = new SpitterSolenoidSet(spitter, false);
         // //
@@ -109,6 +111,7 @@ public class RobotContainer {
         hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
         hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
         hopper.setDefaultCommand(hopperStop);
+        // hopperAdvance.start();
         // //
 
         // Telescope //
@@ -116,6 +119,7 @@ public class RobotContainer {
 
         // Winch //
         winch = new Winch();
+        rsend = new RatchetSender(winch, 1.0);
         // //
 
         // EXTEND/RETRACT
@@ -123,9 +127,11 @@ public class RobotContainer {
         extendLowCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION - (4096 * 2));
         retractCommand = new ExtendClimbSystem(telescope, winch, 0);
         halfwayCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION / 2);
-        quarterRetractCommand = new ExtendClimbSystem(telescope, winch, (FULL_EXTENSION / 4) * 3);
+        negRetractCommand = new ExtendClimbSystem(telescope, winch, -4096 * 4);
 
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
+
+        intakeHopperCommandGroup = new IntakeHopperGroup();
 
         configureButtonBindings();
         configureSubsystemCommands();
@@ -133,18 +139,20 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        new JoystickButton(driveStick, 1).whenActive(spitterOn); // only when held
-        new JoystickButton(driveStick, 2).whenActive(startIntake);
+        new JoystickButton(driveStick, 1).toggleWhenPressed(spitterOn); // only when held spitterOn
+        // new JoystickButton(driveStick, 2).toggleWhenPressed(startIntake);
+        new JoystickButton(driveStick, 2).toggleWhenPressed(intakeHopperCommandGroup);
+
         new JoystickButton(driveStick, 3).whenActive(retractIntake);
         new JoystickButton(driveStick, 4).whenActive(spitterRetract);
         new JoystickButton(driveStick, 5).whenActive(deployIntake);
+
         new JoystickButton(driveStick, 6).whenActive(spitterDeploy);
         new JoystickButton(driveStick, 7).whenActive(retractCommand);
         new JoystickButton(driveStick, 9).whenActive(halfwayCommand); // CLIMB RETRACT HALFWAY
-        new JoystickButton(driveStick, 10).whenActive(quarterRetractCommand); // CLIMB RETRACT 1/4 UP
+        new JoystickButton(driveStick, 10).whenActive(negRetractCommand); // CLIMB RETRACT 1/4 UP
         new JoystickButton(driveStick, 11).whenActive(extendCommand); // CLIMB EXTEND HIGH
         new JoystickButton(driveStick, 12).whenActive(extendLowCommand); // CLIMB EXTEND LOW
-
     }
 
     private void configureSubsystemCommands() {

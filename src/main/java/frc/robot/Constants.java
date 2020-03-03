@@ -38,7 +38,7 @@ public final class Constants {
         public static final boolean DOWN_SWITCH_INVERTED = false;
         private static final TalonSRXConfiguration TELE_SRX_CONFIG = new TalonSRXConfiguration();
 
-        public static final int FULL_EXTENSION = 10 * 4096;
+        public static final int FULL_EXTENSION = 12 * 4096;
 
         public static final double TELE_DRUM_CIRCUMFERENCE = Math.PI * .75; // pi * .75" dia
 
@@ -50,7 +50,7 @@ public final class Constants {
             TELE_SRX_CONFIG.slot0.kI = 0.0;
             TELE_SRX_CONFIG.slot0.kD = 50000.0;
             TELE_SRX_CONFIG.slot0.integralZone = 400;
-            TELE_SRX_CONFIG.slot0.closedLoopPeakOutput = 0.75;
+            TELE_SRX_CONFIG.slot0.closedLoopPeakOutput = 0.4; // TODO .75 ??
             TELE_SRX_CONFIG.closedloopRamp = .5;
             TELE_SRX_CONFIG.openloopRamp = .5;
             return TELE_SRX_CONFIG;
@@ -130,6 +130,7 @@ public final class Constants {
         public static final int SPITTER_TRAPDOOR_TOGGLE_BUTTON = 7; // Temp button
         public static final int VICTOR_CAN = 8;
         public static final int SOLENOID_CAN = 1;
+        public static final double MAX_OUTPUT = 0.7;
     }
 
     /**

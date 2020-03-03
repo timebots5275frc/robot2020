@@ -43,10 +43,10 @@ public class JoystickDrive extends CommandBase {
         // double m_forward = (throt * joystick.getRawAxis(1));
         // double m_rotation = ((throt / 2) * joystick.getRawAxis(2));
 
-        double throt = (joystick.getRawAxis(3) * -1 + 1);
+        double throt = (joystick.getRawAxis(3) * -1 + 1) / 2;
 
-        double m_forward = joystick.getRawAxis(1) * throt * -1;
-        double m_rotation = joystick.getRawAxis(2) * (throt / 2) * -1;
+        double m_forward = joystick.getRawAxis(1) * throt;
+        double m_rotation = joystick.getRawAxis(2) * throt * -1;
 
         // System.out.println("throt = " + throt);
         // System.out.println("m_forward = " + m_forward);

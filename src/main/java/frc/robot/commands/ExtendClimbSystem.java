@@ -19,6 +19,12 @@ public class ExtendClimbSystem extends CommandBase {
   Winch _win;
   Telescope _tele;
   int _pos;
+  int _c = 0;
+  /**
+   * Determines whether or not we can drive the winch immediately. This is useful
+   * when retracting to zero from full extension as the telescope might break.
+   */
+  boolean canWinch = true;
 
   /**
    * The ratio of winch drum rotations necessary for each telescope rotation to
@@ -49,14 +55,27 @@ public class ExtendClimbSystem extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("init ECS");
+    if ((_pos - _tele.getMotor().getSelectedSensorPosition()) < -4096) { // if the difference is more than one rotation
+                                                                         // to the negative, wait one second to begin
+                                                                         // driving the winch
+      canWinch = false;
+      System.out.println("set canWinch to false");
+    } else
+      canWinch = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (_c >= 20)
+      canWinch = true;
 
     _tele.getMotor().set(ControlMode.Position, _pos);
-    _win.getMotor().set(ControlMode.Position, _tele.getMotor().getSelectedSensorPosition() * WINCH_PER_TELE);
+    if (canWinch)
+      _win.getMotor().set(ControlMode.Position, _tele.getMotor().getSelectedSensorPosition() * WINCH_PER_TELE);
+    else
+      _c += 1;
 
   }
 

@@ -47,6 +47,11 @@ public class Winch extends SubsystemBase {
 		// Put code here to be run every loop
 	}
 
+	/**
+	 * DoubleSolenoid
+	 * 
+	 * @return the ratchet solenoid
+	 */
 	public DoubleSolenoid getSolenoid() {
 		return solenoidRatchet;
 	}

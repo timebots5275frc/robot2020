@@ -39,6 +39,7 @@ public class RatchetSender extends CommandBase {
   public void execute() {
     if (Timer.getMatchTime() <= _time) {
       _win.getSolenoid().set(Value.kForward);
+      System.out.println("*** RATCHET at " + _time + "s remaining ***");
     }
   }
 
