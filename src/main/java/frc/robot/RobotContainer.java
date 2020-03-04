@@ -15,14 +15,21 @@ import edu.wpi.first.wpilibj.Joystick;
 // import edu.wpi.first.wpilibj.buttons.JosystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.WinchSet;
+import frc.robot.commands.AutoDriveForward;
+import frc.robot.commands.ExtendClimbSystem;
 import frc.robot.commands.HopperSet;
+import frc.robot.commands.IntakeHopperGroup;
 import frc.robot.commands.IntakeSolenoidSet;
 import frc.robot.commands.IntakeSpeedSet;
 import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.RatchetSender;
 import frc.robot.commands.SpitterSet;
+import frc.robot.commands.SpitterSolenoidSet;
 import frc.robot.commands.TelescopeSeek;
 import frc.robot.subsystems.*;
+import static frc.robot.Constants.TelescopeConstants.FULL_EXTENSION;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -40,26 +47,44 @@ public class RobotContainer {
     private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
     public static Hopper hopper;
-    public Command hopperAdvance;
-    public Command hopperStop;
-    public Command hopperReverse;
+    public static Command hopperAdvance;
+    public static Command hopperStop;
+    public static Command hopperReverse;
 
     public static Spitter spitter;
     public static Command spitterOff;
     public static Command spitterOn;
+    public static Command spitterDeploy;
+    public static Command spitterRetract;
 
     public static Telescope telescope;
     public static Command setTelescopeZero;
+    public static Command setTelescopeHigh;
 
     public static Winch winch;
     public static Command setWinchZero;
     public static Command setWinchTenInch;
+    public static Command setRatchetLock;
+    public static Command setRatchetUnLock;
 
     public static Intake intake;
     public static Command deployIntake;
     public static Command retractIntake;
     public static Command startIntake;
     public static Command stopIntake;
+
+    public static Command extendCommand;
+    public static Command retractCommand;
+    public static Command halfwayCommand;
+    public static Command extendLowCommand;
+    public static Command negRetractCommand;
+
+    public static Command rsend;
+
+    public static Command autoDriveForwards;
+
+    // Command Groups
+    public static IntakeHopperGroup intakeHopperCommandGroup;
 
     /**
      * RobotContainer
@@ -76,32 +101,46 @@ public class RobotContainer {
         intake.setDefaultCommand(stopIntake);
         // //
 
+        // Spitter //
+        spitter = new Spitter();
+        spitterOff = new SpitterSet(spitter, 0.0);
+        spitterOn = new SpitterSet(spitter, Constants.SpitterConstants.MAX_OUTPUT);
+        spitterDeploy = new SpitterSolenoidSet(spitter, true);
+        spitterRetract = new SpitterSolenoidSet(spitter, false);
+        // //
+
         // Hopper //
         hopper = new Hopper();
         hopperAdvance = new HopperSet(hopper, Constants.HopperConstants.HOPPER_ADVANCE_SPEED);
         hopperStop = new HopperSet(hopper, Constants.HopperConstants.HOPPER_HOLD_SPEED);
         hopperReverse = new HopperSet(hopper, Constants.HopperConstants.HOPPER_REVERSE_SPEED);
         hopper.setDefaultCommand(hopperStop);
+        // hopperAdvance.start();
         // //
 
         // Telescope //
         telescope = new Telescope();
-        setTelescopeZero = new TelescopeSeek(telescope, 10.0); // 10 Inches
-        // //
 
         // Winch //
         winch = new Winch();
-        setWinchZero = new WinchSet(winch, 0);
-        setWinchTenInch = new WinchSet(winch, 10.0);
+        rsend = new RatchetSender(winch, 1.0);
         // //
 
-        // Spitter //
-        spitter = new Spitter();
-        spitterOff = new SpitterSet(spitter, 0);
-        spitterOn = new SpitterSet(spitter, 1);
-        // //
+        // EXTEND/RETRACT
+        extendCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION);
+        extendLowCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION - (4096 * 2));
+        retractCommand = new ExtendClimbSystem(telescope, winch, 0);
+        halfwayCommand = new ExtendClimbSystem(telescope, winch, FULL_EXTENSION / 2);
+        negRetractCommand = new ExtendClimbSystem(telescope, winch, -4096 * 4);
 
         driveTrainSubsystem.setDefaultCommand(new JoystickDrive(this.driveTrainSubsystem, this.driveStick));
+
+        intakeHopperCommandGroup = new IntakeHopperGroup();
+
+        autoDriveForwards = new AutoDriveForward(driveTrainSubsystem, 1.0, .7);
+        autoChooser.addOption("Drive Forwards - Auton", autoDriveForwards);
+        autoChooser.setDefaultOption("DO NOTHING", new CommandBase() {});
+
 
         configureButtonBindings();
         configureSubsystemCommands();
@@ -109,8 +148,20 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        new JoystickButton(driveStick, 5).whenActive(hopperAdvance);
-        new JoystickButton(driveStick, 3).whenActive(hopperStop);
+        new JoystickButton(driveStick, 1).toggleWhenPressed(spitterOn); // only when held spitterOn
+        // new JoystickButton(driveStick, 2).toggleWhenPressed(startIntake);
+        new JoystickButton(driveStick, 2).toggleWhenPressed(intakeHopperCommandGroup);
+
+        new JoystickButton(driveStick, 3).whenActive(retractIntake);
+        new JoystickButton(driveStick, 4).whenActive(spitterRetract);
+        new JoystickButton(driveStick, 5).whenActive(deployIntake);
+
+        new JoystickButton(driveStick, 6).whenActive(spitterDeploy);
+        new JoystickButton(driveStick, 7).whenActive(retractCommand);
+        new JoystickButton(driveStick, 9).whenActive(halfwayCommand); // CLIMB RETRACT HALFWAY
+        new JoystickButton(driveStick, 10).whenActive(negRetractCommand); // CLIMB RETRACT 1/4 UP
+        new JoystickButton(driveStick, 11).whenActive(extendCommand); // CLIMB EXTEND HIGH
+        new JoystickButton(driveStick, 12).whenActive(extendLowCommand); // CLIMB EXTEND LOW
     }
 
     private void configureSubsystemCommands() {

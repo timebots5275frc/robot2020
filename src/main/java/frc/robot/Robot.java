@@ -98,6 +98,7 @@ public class Robot extends TimedRobot {
             m_robotContainer.setWinchZero.schedule();
             m_autonomousCommand.cancel();
         }
+        m_robotContainer.rsend.schedule();
     }
 
     /**

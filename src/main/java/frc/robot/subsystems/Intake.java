@@ -9,25 +9,26 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
 
-  private Solenoid solenoid;
+  private DoubleSolenoid solenoid;
   private WPI_VictorSPX intakeVictor;
 
   /**
    * Creates a new Intake.
    */
   public Intake() {
-    solenoid = new Solenoid(0, 0);
+    solenoid = new DoubleSolenoid(1, 2, 5);
     addChild("solenoid", solenoid);
     intakeVictor = new WPI_VictorSPX(Constants.IntakeConstants.INTAKE_VICTOR_CHANNEL);
   }
 
-  public Solenoid getSolenoid() {
+  public DoubleSolenoid getSolenoid() {
     return solenoid;
   }
 
