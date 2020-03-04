@@ -16,7 +16,7 @@ public class AutoDriveForward extends CommandBase {
 
   DriveSubsystem _driveSub;
   DifferentialDrive _drive;
-  Timer _t;
+  Timer _t = new Timer();
   double _time;
   double _speed;
   /**
@@ -30,6 +30,8 @@ public class AutoDriveForward extends CommandBase {
     _drive = _driveSub.getDDrive();
     _time = driveUntil;
     _speed = driveSpeed;
+    _t.stop();
+    _t.reset();
   }
 
   // Called when the command is initially scheduled.
