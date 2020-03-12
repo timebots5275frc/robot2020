@@ -1,3 +1,4 @@
-# our duluth code
+# robot2020
+FRC Team #5275's 2020 Robot Code - FIRST INFINITE RECHARGE
 
-main repository: https://github.com/timebots5275frc/robot2020
+contact us: [our website](https://www.timebots5275.com) | [email](mailto:team@timebots5275.com)
