@@ -7,22 +7,22 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Spitter;
 
-public class IntakeSpeedSet extends CommandBase {
+public class SpitterSolenoidSet extends CommandBase {
 
-  private double speed;
-  private Intake subsystem;
+  private boolean deploy;
+  private Spitter subsystem;
 
   /**
-   * Creates a new IntakeSpeedSet.
+   * Creates a new SpitterSolenoidSet.
    */
-  public IntakeSpeedSet(Intake subsystem, double speed) {
+  public SpitterSolenoidSet(Spitter subsystem, boolean deploy) {
     this.subsystem = subsystem;
-    this.speed = speed;
+    this.deploy = deploy;
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -35,15 +35,12 @@ public class IntakeSpeedSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getVictor().set(ControlMode.PercentOutput, speed);
+    subsystem.getTrapDoor().set(!deploy ? Value.kForward : Value.kReverse);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    subsystem.getVictor().set(ControlMode.PercentOutput, 0.0);
-
   }
 
   // Returns true when the command should end.

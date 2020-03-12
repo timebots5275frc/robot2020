@@ -7,12 +7,12 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
 public class IntakeSolenoidSet extends CommandBase {
 
-  
   private boolean deploy;
   private Intake subsystem;
 
@@ -34,7 +34,7 @@ public class IntakeSolenoidSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getSolenoid().set(deploy);
+    subsystem.getSolenoid().set(!deploy ? Value.kForward : Value.kReverse);
   }
 
   // Called once the command ends or is interrupted.

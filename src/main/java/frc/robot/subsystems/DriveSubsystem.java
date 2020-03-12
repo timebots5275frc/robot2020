@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -48,15 +49,19 @@ public class DriveSubsystem extends SubsystemBase {
 	public DriveSubsystem() {
 
 		rightTalon1 = new WPI_TalonSRX(Constants.DriveTrainConstants.RIGHT_TALON);
+		rightTalon1.setNeutralMode(NeutralMode.Brake);
 
 		rightVictor2 = new WPI_VictorSPX(Constants.DriveTrainConstants.RIGHT_VICTOR);
+		rightVictor2.setNeutralMode(NeutralMode.Brake);
 
 		m_rightMotors = new SpeedControllerGroup(rightTalon1, rightVictor2);
 		addChild("Speed Controller Group 2", m_rightMotors);
 
 		leftTalon3 = new WPI_TalonSRX(Constants.DriveTrainConstants.LEFT_TALON);
+		leftTalon3.setNeutralMode(NeutralMode.Brake);
 
 		leftVictor4 = new WPI_VictorSPX(Constants.DriveTrainConstants.LEFT_VICTOR);
+		leftVictor4.setNeutralMode(NeutralMode.Brake);
 
 		m_leftMotors = new SpeedControllerGroup(leftTalon3, leftVictor4);
 		addChild("Speed Controller Group 1", m_leftMotors);

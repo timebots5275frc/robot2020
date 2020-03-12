@@ -7,43 +7,45 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Winch;
 
-public class IntakeSpeedSet extends CommandBase {
-
-  private double speed;
-  private Intake subsystem;
+public class RatchetSender extends CommandBase {
+  private Winch _win;
+  private double _time = 5.0;
 
   /**
-   * Creates a new IntakeSpeedSet.
+   * Creates a new RatchetSender
+   * 
+   * @param win  the winch subsystem to use
+   * @param time the match time, in seconds,
    */
-  public IntakeSpeedSet(Intake subsystem, double speed) {
-    this.subsystem = subsystem;
-    this.speed = speed;
-    addRequirements(subsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
+  public RatchetSender(Winch win, double time) {
+    _win = win;
+    _time = time;
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    _win.getSolenoid().set(Value.kReverse);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getVictor().set(ControlMode.PercentOutput, speed);
+    if (Timer.getMatchTime() <= _time) {
+      _win.getSolenoid().set(Value.kForward);
+      System.out.println("*** RATCHET at " + Timer.getMatchTime() + "s remaining ***");
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    subsystem.getVictor().set(ControlMode.PercentOutput, 0.0);
-
   }
 
   // Returns true when the command should end.

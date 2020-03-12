@@ -7,24 +7,26 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Winch;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class IntakeSpeedSet extends CommandBase {
+public class RatchetSet extends CommandBase {
 
-  private double speed;
-  private Intake subsystem;
+  Winch _win;
+  Value _val;
 
   /**
-   * Creates a new IntakeSpeedSet.
+   * aaaaaaaaaa
+   * 
+   * @param win    the winch subsystem to use
+   * @param deploy forward if true, reverse if false
    */
-  public IntakeSpeedSet(Intake subsystem, double speed) {
-    this.subsystem = subsystem;
-    this.speed = speed;
-    addRequirements(subsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
+  public RatchetSet(Winch win, boolean deploy) {
+    addRequirements(win);
+    _win = win;
+    _val = deploy ? Value.kForward : Value.kReverse;
   }
 
   // Called when the command is initially scheduled.
@@ -35,15 +37,12 @@ public class IntakeSpeedSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getVictor().set(ControlMode.PercentOutput, speed);
+    _win.getSolenoid().set(_val);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    subsystem.getVictor().set(ControlMode.PercentOutput, 0.0);
-
   }
 
   // Returns true when the command should end.
