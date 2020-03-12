@@ -34,7 +34,7 @@ public class IntakeSolenoidSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getSolenoid().set(deploy ? Value.kForward : Value.kReverse);
+    subsystem.getSolenoid().set(!deploy ? Value.kForward : Value.kReverse);
   }
 
   // Called once the command ends or is interrupted.

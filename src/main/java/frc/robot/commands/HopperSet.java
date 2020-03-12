@@ -14,25 +14,25 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Hopper;
 
 public class HopperSet extends CommandBase {
-    
-    final Hopper hopperSubsystem;
+
+    final Hopper _hopper;
 
     private WPI_VictorSPX hopperVictorTop;
     private WPI_VictorSPX hopperVictorBottom;
 
-    private double speedPercent;
+    private double _speed;
 
     /**
-     * @param hopperSubsystem Between -1 to 1
-     * @param speedPercent
+     * @param hopperSubsystem
+     * @param speedPercent    Between -1 to 1
      */
     public HopperSet(Hopper hopperSubsystem, double speedPercent) {
-        this.hopperSubsystem = hopperSubsystem;
-        this.speedPercent = speedPercent;
+        _hopper = hopperSubsystem;
+        _speed = speedPercent;
 
         addRequirements(hopperSubsystem);
-        hopperVictorTop = hopperSubsystem.getHopperVictorBottom();
-        hopperVictorBottom = hopperSubsystem.getHopperVictorTop();
+        hopperVictorTop = _hopper.getHopperVictorBottom();
+        hopperVictorBottom = _hopper.getHopperVictorTop();
     }
 
     // Called just before this Command runs the first time
@@ -44,8 +44,8 @@ public class HopperSet extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        hopperVictorTop.set(ControlMode.PercentOutput, speedPercent);
-        hopperVictorBottom.set(ControlMode.PercentOutput, speedPercent);
+        hopperVictorTop.set(ControlMode.PercentOutput, _speed);
+        hopperVictorBottom.set(ControlMode.PercentOutput, _speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

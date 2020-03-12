@@ -7,24 +7,26 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Spitter;
+import frc.robot.subsystems.Winch;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class SpitterSolenoidSet extends CommandBase {
+public class RatchetSet extends CommandBase {
 
-  private boolean deploy;
-  private Spitter subsystem;
+  Winch _win;
+  Value _val;
 
   /**
-   * Creates a new SpitterSolenoidSet.
+   * aaaaaaaaaa
+   * 
+   * @param win    the winch subsystem to use
+   * @param deploy forward if true, reverse if false
    */
-  public SpitterSolenoidSet(Spitter subsystem, boolean deploy) {
-    this.subsystem = subsystem;
-    this.deploy = deploy;
-    addRequirements(subsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
+  public RatchetSet(Winch win, boolean deploy) {
+    addRequirements(win);
+    _win = win;
+    _val = deploy ? Value.kForward : Value.kReverse;
   }
 
   // Called when the command is initially scheduled.
@@ -35,7 +37,7 @@ public class SpitterSolenoidSet extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.getTrapDoor().set(!deploy ? Value.kForward : Value.kReverse);
+    _win.getSolenoid().set(_val);
   }
 
   // Called once the command ends or is interrupted.

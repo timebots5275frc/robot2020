@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.RatchetSet;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -61,6 +62,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        // new RatchetSet(m_robotContainer.winch, true).schedule();
     }
 
     @Override
@@ -74,6 +76,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+        // new RatchetSet(m_robotContainer.winch, false).schedule();
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
@@ -95,51 +98,25 @@ public class Robot extends TimedRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (m_autonomousCommand != null) {
-            m_robotContainer.setWinchZero.schedule();
+            // m_robotContainer.setWinchZero.schedule();
             m_autonomousCommand.cancel();
         }
-        m_robotContainer.rsend.schedule();
+        // m_robotContainer.rsend.schedule();
+        // TODO ratchet
+        // new RatchetSet(m_robotContainer.winch, false).schedule();
+
     }
 
-    /**
-     * This function is called periodically during operator control.
-     */
     @Override
     public void teleopPeriodic() {
-
-        // if (m_robotContainer.getDriveStick().getRawButton(5)) {
-        // System.out.println("hopper start");
-        // m_robotContainer.hopperAdvance.schedule();
-        // } else {
-        // m_robotContainer.hopperAdvance.cancel();
-        // }
-
-        // if (m_robotContainer.getDriveStick().getRawButton(3)) {
-        // System.out.println("hopper Reverse");
-        // m_robotContainer.hopperReverse.schedule();
-        // } else {
-        // m_robotContainer.hopperReverse.cancel();
-        // }
-
-        // if (m_robotContainer.getDriveStick().getRawButton(11)) {
-        // System.out.println("zero winch");
-        // m_robotContainer.setWinchZero.schedule();
-        // }
-        // if (m_robotContainer.getDriveStick().getRawButton(12)) {
-        // System.out.println("10 inch winch");
-        // m_robotContainer.setWinchTenInch.schedule();
-        // }
     }
 
     @Override
     public void testInit() {
-        // Cancels all running commands at the start of test mode.
         CommandScheduler.getInstance().cancelAll();
+        // new RatchetSet(m_robotContainer.winch, false);
     }
 
-    /**
-     * This function is called periodically during test mode.
-     */
     @Override
     public void testPeriodic() {
     }

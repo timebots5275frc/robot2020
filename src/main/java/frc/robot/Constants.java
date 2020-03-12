@@ -24,6 +24,14 @@ public final class Constants {
         public static final int RIGHT_VICTOR = 2;
         public static final int LEFT_TALON = 3;
         public static final int LEFT_VICTOR = 4;
+        public static final TalonSRXConfiguration TELE_SRX_CONFIG = new TalonSRXConfiguration();
+
+        public static TalonSRXConfiguration getConfig() {
+            // TODO tune these values
+            TELE_SRX_CONFIG.closedloopRamp = 0;
+            TELE_SRX_CONFIG.openloopRamp = 0;
+            return TELE_SRX_CONFIG;
+        }
     }
 
     /**
@@ -50,7 +58,7 @@ public final class Constants {
             TELE_SRX_CONFIG.slot0.kI = 0.0;
             TELE_SRX_CONFIG.slot0.kD = 50000.0;
             TELE_SRX_CONFIG.slot0.integralZone = 400;
-            TELE_SRX_CONFIG.slot0.closedLoopPeakOutput = 0.4; // TODO .75 ??
+            TELE_SRX_CONFIG.slot0.closedLoopPeakOutput = 0.75; // TODO .75 ??
             TELE_SRX_CONFIG.closedloopRamp = .5;
             TELE_SRX_CONFIG.openloopRamp = .5;
             return TELE_SRX_CONFIG;
@@ -62,6 +70,7 @@ public final class Constants {
      */
     public static final class ControllerConstants {
         public static final int DRIVER_STICK_CHANNEL = 0;
+        public static final int AUX_STICK_CHANNEL = 1;
     }
 
     /**
@@ -112,7 +121,7 @@ public final class Constants {
         public static final int VICTOR_CAN_BOTTOM = 7;
 
         // ControlMode.PercentOutput Value should range from 0 to 1; Ex 0.5 = 50%;
-        public static final double HOPPER_ADVANCE_SPEED = 0.50;
+        public static final double HOPPER_ADVANCE_SPEED = 0.6;
         public static final double HOPPER_HOLD_SPEED = 0;
         public static final double HOPPER_REVERSE_SPEED = -0.50;
 
